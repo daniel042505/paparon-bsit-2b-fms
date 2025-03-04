@@ -16,6 +16,8 @@ public class cashierDashBoard extends javax.swing.JFrame {
      */
     public cashierDashBoard() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null); 
     }
 
     /**

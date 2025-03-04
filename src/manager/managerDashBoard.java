@@ -5,6 +5,10 @@
  */
 package manager;
 
+import config.Session;
+import javax.swing.JOptionPane;
+import paparon.LoginPage;
+
 /**
  *
  * @author User
@@ -16,6 +20,8 @@ public class managerDashBoard extends javax.swing.JFrame {
      */
     public managerDashBoard() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null); 
     }
   
     
@@ -36,12 +42,17 @@ public class managerDashBoard extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         user = new javax.swing.JLabel();
+        acc_name = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 51, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(204, 0, 204));
@@ -84,9 +95,23 @@ public class managerDashBoard extends javax.swing.JFrame {
                 userMouseClicked(evt);
             }
         });
-        jPanel1.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 120, 50));
+        jPanel1.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 130, 120, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 410));
+        acc_name.setBackground(new java.awt.Color(102, 0, 102));
+        acc_name.setDisplayedMnemonic('U');
+        acc_name.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        acc_name.setForeground(new java.awt.Color(255, 255, 255));
+        acc_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        acc_name.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/006-manager.png"))); // NOI18N
+        acc_name.setText("MANAGER");
+        acc_name.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                acc_nameMouseClicked(evt);
+            }
+        });
+        jPanel1.add(acc_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 120, 50));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -97,6 +122,32 @@ public class managerDashBoard extends javax.swing.JFrame {
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_userMouseClicked
+
+    private void acc_nameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_acc_nameMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_acc_nameMouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        
+       Session sess = Session.getInstance();
+       int user_id = sess.getUid();
+       if(sess.getUid() == 0){    
+       
+       JOptionPane.showMessageDialog(null,"No Account, Login First" );
+       
+       new LoginPage().setVisible(true);
+       this.setVisible(false);
+       this.dispose();
+       }else{
+            acc_name.setText(""+sess.getFname());
+       }
+       
+       
+      
+       
+         
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -134,6 +185,7 @@ public class managerDashBoard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel acc_name;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 
 public class dbConnect {
@@ -36,6 +37,22 @@ public class dbConnect {
             }
             return result;
         }
+        //Function to UpdateData
+        public void UpdateData(String sql){
+        try{
+        PreparedStatement pst = connect.prepareStatement(sql);
+        int rowsUpdated = pst.executeUpdate();
+        if(rowsUpdated > 0){
+      
+        }else{
+            System.out.println("Data Update Failed!");
+            
+        }
+         pst.close();
+        }catch(SQLException ex){
+            System.out.println("Connection Error"+ex);
+        }
+        }
     
         //Function to retrieve data
         public ResultSet getData(String sql) throws SQLException{
@@ -60,38 +77,8 @@ public class dbConnect {
         
         
     }
-    public boolean checkLogin(String username, String password) {
-    boolean isValidUser = false;
-    try {
-        // Create the SQL query
-        String sql = "SELECT * FROM tbl_user WHERE u_user = ? AND u_pass = ?";
+ 
 
-        // Prepare the statement
-        PreparedStatement pst = connect.prepareStatement(sql);
-        pst.setString(1, username);
-        pst.setString(2, password);
-
-        ResultSet rs = pst.executeQuery();
-
-        if (rs.next()) {
-            // Check if the status is "active"
-            String status = rs.getString("u_status");
-
-            if ("active".equals(status)) {
-                isValidUser = true;
-            } else if ("pending".equals(status)) {
-                isValidUser = false;
-            }
-        }
-        rs.close();
-        pst.close();
-
-    } catch (SQLException ex) {
-        System.out.println("Error during login check: " + ex.getMessage());
-    }
-
-    return isValidUser;
-}
 
     // New function to retrieve the occupation of the user (manager/cashier)
     public String getUserOccupation(String username) {
@@ -122,7 +109,29 @@ public class dbConnect {
 
         return occupation; // Return the occupation value (manager/cashier)
     }
-
+     // Function to delete a user by ID
+    public boolean deleteUserById(String userId) {
+        boolean success = false;
+        try {
+            String sql = "DELETE FROM tbl_user WHERE u_id = ?";
+            PreparedStatement pst = connect.prepareStatement(sql);
+            pst.setString(1, userId);
+            int rowsDeleted = pst.executeUpdate();
+            pst.close();
+            if (rowsDeleted > 0) {
+                success = true;
+                JOptionPane.showMessageDialog(null, "User deleted successfully!");
+            } else {
+                JOptionPane.showMessageDialog(null, "No user found with the given ID.");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error deleting user: " + ex.getMessage());
+        }
+        return success;
+    }
 }
+
+
+
     
 

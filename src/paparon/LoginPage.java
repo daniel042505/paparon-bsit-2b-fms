@@ -6,7 +6,10 @@
 package paparon;
 
 import cashier.cashierDashBoard;
+import config.Session;
 import config.dbConnect;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import manager.managerDashBoard;
 
@@ -28,9 +31,44 @@ public class LoginPage extends javax.swing.JFrame {
         
     
     }
+    static String status;
+    static String occupation;
     
+    public static boolean loginAcc(String username, String password){
+     dbConnect connect = new dbConnect();
+     
+     try{
+    String query = "SELECT * FROM tbl_user WHERE u_user = '" +username+ "' AND u_pass = '" +password+"'";
+    ResultSet resultSet = connect.getData(query);
+    if(resultSet.next()){
+    status = resultSet.getString("u_status");
+    occupation = resultSet.getString("u_occ");
+    Session sess = Session.getInstance();
+    sess.setUid(resultSet.getInt("u_id"));
+    sess.setFname(resultSet.getString("u_fname"));
+    sess.setLname(resultSet.getString("u_lname"));
+    sess.setOcc(resultSet.getString("u_occ"));
+     sess.setCn(resultSet.getString("u_cn"));
+    sess.setEmail(resultSet.getString("u_em"));
+    sess.setUser(resultSet.getString("u_user"));
+    sess.setPass(resultSet.getString("u_pass"));
+    sess.setStatus(resultSet.getString("u_status"));
+    return true;
     
+    }else{
+        return false;
+    }
     
+             } catch(SQLException ex){
+              
+             return false;
+     }
+     
+    }
+
+    
+
+
     
     
     /**
@@ -208,27 +246,31 @@ else if (pass.getPassword().length < 8) {
 } 
     else {  
     
-    dbConnect db = new dbConnect();
-        boolean isValidUser = db.checkLogin(username, password); 
+  if(loginAcc(user.getText(),pass.getText())){
+  if(!status.equals("Active")){
+   JOptionPane.showMessageDialog(null, "Inactive Acc, Contact the Admin");
+  }else{
+   if(occupation.equals("Manager")){
+     JOptionPane.showMessageDialog(null, "Login Successfully");
+    new managerDashBoard().setVisible(true);
+     this.setVisible(false);
+     this.dispose();
+   }else if(occupation.equals("Cashier")){
+    JOptionPane.showMessageDialog(null, "Login Successfully");
+    new cashierDashBoard().setVisible(true);
+     this.setVisible(false);
+     
+   }else{
+         JOptionPane.showMessageDialog(null, "No account type found, Contact the Manager");
+       
+       }
+  }
+    
+  }else{
+    JOptionPane.showMessageDialog(null, "Invalid Account");
+  }
 
-        if (isValidUser) {
-           
-            String occupation = db.getUserOccupation(username);  
-            
-            if ("Manager".equalsIgnoreCase(occupation)) {
-                new managerDashBoard().setVisible(true);  
-            } else if ("Cashier".equalsIgnoreCase(occupation)) {
-                new cashierDashBoard().setVisible(true);  
-            } else {
-                JOptionPane.showMessageDialog(null, "Invalid role");
-            }
-            
-            this.setVisible(false);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(null, "Invalid username or password");
-           
-        }
+      
     
  
     

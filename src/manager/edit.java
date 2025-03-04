@@ -17,6 +17,7 @@ public class edit extends javax.swing.JFrame {
     public edit() {
         initComponents();
         this.setResizable(false);
+        this.setLocationRelativeTo(null); 
     }
 
     /**
