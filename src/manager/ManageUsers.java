@@ -29,6 +29,7 @@ public class ManageUsers extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         displayData();
+         this.setLocationRelativeTo(null); 
         
         
     }
@@ -66,11 +67,11 @@ public class ManageUsers extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         m_table = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        id = new javax.swing.JLabel();
+        fname = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         c_un1 = new javax.swing.JLabel();
         p_add = new javax.swing.JPanel();
-        c_un2 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         c_un = new javax.swing.JLabel();
         p_add1 = new javax.swing.JPanel();
         c_un3 = new javax.swing.JLabel();
@@ -100,7 +101,6 @@ public class ManageUsers extends javax.swing.JFrame {
                 formWindowActivated(evt);
             }
         });
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(204, 0, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -121,22 +121,25 @@ public class ManageUsers extends javax.swing.JFrame {
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 500, 460));
 
         jPanel2.setBackground(new java.awt.Color(102, 0, 102));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.setLayout(null);
 
-        id.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        id.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        id.setText("0");
-        jPanel2.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 260, 50));
+        fname.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        fname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        fname.setText("0");
+        jPanel2.add(fname);
+        fname.setBounds(0, 400, 260, 50);
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/008-team.png"))); // NOI18N
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 130));
+        jPanel2.add(jLabel3);
+        jLabel3.setBounds(0, 0, 250, 110);
 
         c_un1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         c_un1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         c_un1.setText("Current User:");
-        jPanel2.add(c_un1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 260, 50));
+        jPanel2.add(c_un1);
+        c_un1.setBounds(0, 370, 260, 50);
 
         p_add.setBackground(new java.awt.Color(102, 0, 102));
         p_add.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -147,25 +150,26 @@ public class ManageUsers extends javax.swing.JFrame {
                 p_addMouseExited(evt);
             }
         });
-        p_add.setLayout(null);
+        p_add.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        c_un2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        c_un2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        c_un2.setText("ADD");
-        c_un2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("ADD");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                c_un2MouseClicked(evt);
+                jLabel2MouseClicked(evt);
             }
         });
-        p_add.add(c_un2);
-        c_un2.setBounds(-10, 20, 270, 10);
+        p_add.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 260, -1));
 
-        jPanel2.add(p_add, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 260, 50));
+        jPanel2.add(p_add);
+        p_add.setBounds(0, 160, 260, 60);
 
         c_un.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         c_un.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         c_un.setText("USERS");
-        jPanel2.add(c_un, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 260, 50));
+        jPanel2.add(c_un);
+        c_un.setBounds(0, 110, 260, 50);
 
         p_add1.setBackground(new java.awt.Color(102, 0, 102));
         p_add1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -187,9 +191,10 @@ public class ManageUsers extends javax.swing.JFrame {
             }
         });
         p_add1.add(c_un3);
-        c_un3.setBounds(-10, 20, 270, 10);
+        c_un3.setBounds(0, 20, 260, 10);
 
-        jPanel2.add(p_add1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 260, 50));
+        jPanel2.add(p_add1);
+        p_add1.setBounds(0, 210, 260, 50);
 
         p_add2.setBackground(new java.awt.Color(102, 0, 102));
         p_add2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -211,9 +216,10 @@ public class ManageUsers extends javax.swing.JFrame {
             }
         });
         p_add2.add(c_un4);
-        c_un4.setBounds(-10, 20, 270, 10);
+        c_un4.setBounds(0, 20, 260, 10);
 
-        jPanel2.add(p_add2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 260, 60));
+        jPanel2.add(p_add2);
+        p_add2.setBounds(0, 320, 260, 60);
 
         p_add3.setBackground(new java.awt.Color(102, 0, 102));
         p_add3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -235,9 +241,10 @@ public class ManageUsers extends javax.swing.JFrame {
             }
         });
         p_add3.add(c_un5);
-        c_un5.setBounds(-10, 20, 270, 10);
+        c_un5.setBounds(0, 20, 260, 10);
 
-        jPanel2.add(p_add3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 260, 60));
+        jPanel2.add(p_add3);
+        p_add3.setBounds(0, 260, 260, 60);
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 260, 470));
 
@@ -251,7 +258,16 @@ public class ManageUsers extends javax.swing.JFrame {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 60));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 520));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -259,7 +275,7 @@ public class ManageUsers extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
            Session sess = Session.getInstance();
-           id.setText(""+sess.getUid());
+           fname.setText(""+sess.getFname());
         
     }//GEN-LAST:event_formWindowActivated
 
@@ -277,57 +293,6 @@ public class ManageUsers extends javax.swing.JFrame {
       
         p_add.setBackground(navcolor);
     }//GEN-LAST:event_p_addMouseExited
-
-    private void c_un2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_c_un2MouseClicked
-        // TODO add your handling code here:
-        createUserForm crf = new createUserForm();
-        crf.fin.setEnabled(true);
-        crf.lan.setEnabled(true);
-        crf.setVisible(true);
-        this.setVisible(false);
-        
-        this.dispose();
-    }//GEN-LAST:event_c_un2MouseClicked
-
-    private void c_un3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_c_un3MouseClicked
-        // TODO add your handling code here:
-        int rowIndex = m_table.getSelectedRow();
-        
-        if(rowIndex<0){
-         JOptionPane.showMessageDialog(null, "Please Select an Item");
-        }else{
-         try{
-             
-         
-         dbConnect dbc = new dbConnect();
-         TableModel tbl = m_table.getModel();
-        ResultSet rs = dbc.getData("SELECT * FROM tbl_user WHERE u_id = '" + tbl.getValueAt(rowIndex, 0) + "'");
-        if(rs.next()){
-         createUserForm crf = new createUserForm();
-         crf.u_id.setText(""+rs.getInt("u_id"));
-         crf.fin.setText(""+rs.getString("u_fname")); 
-         crf.lan.setText(""+rs.getString("u_lname")); 
-         crf.can.setText(""+rs.getString("u_cn")); 
-         crf.occ.setSelectedItem(""+rs.getString("u_occ")); 
-         crf.em.setText(""+rs.getString("u_em")); 
-         crf.use.setText(""+rs.getString("u_user")); 
-         crf.passwe.setText(""+rs.getString("u_pass")); 
-         crf.stt.setSelectedItem(""+rs.getString("u_status")); 
-         crf.add.setEnabled(false);
-         crf.up.setEnabled(true);
-         
-         
-         crf.setVisible(true);
-         this.dispose();
-        }
-         
-       
-        }catch(SQLException ex){
-             System.out.println(""+ex);
-        }
-        }
-        TableModel tbl = m_table.getModel();
-    }//GEN-LAST:event_c_un3MouseClicked
 
     private void p_add1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_p_add1MouseEntered
         // TODO add your handling code here:
@@ -402,6 +367,53 @@ public class ManageUsers extends javax.swing.JFrame {
         p_add3.setBackground(navcolor);
     }//GEN-LAST:event_p_add3MouseExited
 
+    private void c_un3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_c_un3MouseClicked
+        // TODO add your handling code here:
+        int rowIndex = m_table.getSelectedRow();
+
+        if(rowIndex<0){
+            JOptionPane.showMessageDialog(null, "Please Select an Item");
+        }else{
+            try{
+
+                dbConnect dbc = new dbConnect();
+                TableModel tbl = m_table.getModel();
+                ResultSet rs = dbc.getData("SELECT * FROM tbl_user WHERE u_id = '" + tbl.getValueAt(rowIndex, 0) + "'");
+                if(rs.next()){
+                    createUserForm crf = new createUserForm();
+                    crf.u_id.setText(""+rs.getInt("u_id"));
+                    crf.fin.setText(""+rs.getString("u_fname"));
+                    crf.lan.setText(""+rs.getString("u_lname"));
+                    crf.can.setText(""+rs.getString("u_cn"));
+                    crf.occ.setSelectedItem(""+rs.getString("u_occ"));
+                    crf.em.setText(""+rs.getString("u_em"));
+                    crf.use.setText(""+rs.getString("u_user"));
+                    crf.passwe.setText(""+rs.getString("u_pass"));
+                    crf.stt.setSelectedItem(""+rs.getString("u_status"));
+                    crf.add.setEnabled(false);
+                    crf.up.setEnabled(true);
+
+                    crf.setVisible(true);
+                    this.dispose();
+                }
+
+            }catch(SQLException ex){
+                System.out.println(""+ex);
+            }
+        }
+        TableModel tbl = m_table.getModel();
+    }//GEN-LAST:event_c_un3MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+         createUserForm crf = new createUserForm();
+        crf.fin.setEnabled(true);
+        crf.setVisible(true);
+        this.setVisible(false);
+
+        this.dispose();
+    }//GEN-LAST:event_jLabel2MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -440,12 +452,12 @@ public class ManageUsers extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel c_un;
     private javax.swing.JLabel c_un1;
-    private javax.swing.JLabel c_un2;
     private javax.swing.JLabel c_un3;
     private javax.swing.JLabel c_un4;
     private javax.swing.JLabel c_un5;
-    private javax.swing.JLabel id;
+    private javax.swing.JLabel fname;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

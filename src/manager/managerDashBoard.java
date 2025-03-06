@@ -140,7 +140,7 @@ public class managerDashBoard extends javax.swing.JFrame {
        this.setVisible(false);
        this.dispose();
        }else{
-            acc_name.setText(""+sess.getFname());
+       acc_name.setText(""+sess.getFname());
        }
        
        

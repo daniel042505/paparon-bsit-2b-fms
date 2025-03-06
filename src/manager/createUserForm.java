@@ -88,7 +88,6 @@ public class createUserForm extends javax.swing.JFrame {
         lasn.setText("Last Name: ");
         jPanel1.add(lasn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 100, 20));
 
-        lan.setEnabled(false);
         lan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lanActionPerformed(evt);

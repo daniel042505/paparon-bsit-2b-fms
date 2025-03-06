@@ -5,6 +5,10 @@
  */
 package cashier;
 
+import config.Session;
+import javax.swing.JOptionPane;
+import paparon.LoginPage;
+
 /**
  *
  * @author User
@@ -29,11 +33,46 @@ public class cashierDashBoard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        user = new javax.swing.JLabel();
+        acc_name = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        user.setBackground(new java.awt.Color(102, 0, 102));
+        user.setDisplayedMnemonic('U');
+        user.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        user.setForeground(new java.awt.Color(255, 255, 255));
+        user.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/011-info.png"))); // NOI18N
+        user.setText("USERS");
+        user.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userMouseClicked(evt);
+            }
+        });
+        getContentPane().add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 120, 50));
+
+        acc_name.setBackground(new java.awt.Color(102, 0, 102));
+        acc_name.setDisplayedMnemonic('U');
+        acc_name.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        acc_name.setForeground(new java.awt.Color(255, 255, 255));
+        acc_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        acc_name.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/009-clerk.png"))); // NOI18N
+        acc_name.setText("CASHIER");
+        acc_name.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                acc_nameMouseClicked(evt);
+            }
+        });
+        getContentPane().add(acc_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 120, 50));
 
         jLabel1.setBackground(new java.awt.Color(0, 153, 153));
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -50,6 +89,33 @@ public class cashierDashBoard extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void acc_nameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_acc_nameMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_acc_nameMouseClicked
+
+    private void userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_userMouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+          
+       Session sess = Session.getInstance();
+       int user_id = sess.getUid();
+       if(sess.getUid() == 0){    
+       
+       JOptionPane.showMessageDialog(null,"No Account, Login First" );
+       
+       new LoginPage().setVisible(true);
+       this.setVisible(false);
+       this.dispose();
+       }else{
+            acc_name.setText(""+sess.getFname());
+       }
+       
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -87,7 +153,9 @@ public class cashierDashBoard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel acc_name;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
 }
