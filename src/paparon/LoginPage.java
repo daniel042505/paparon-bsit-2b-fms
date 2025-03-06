@@ -317,7 +317,7 @@ else if (pass.getPassword().length < 8) {
         // TODO add your handling code here:
         show.setVisible(false);
         hide.setVisible(true);
-       pass.setEchoChar('\u2022'); 
+       pass.setEchoChar('*'); 
        
 
         

@@ -77,6 +77,8 @@ public class Register extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        use.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        use.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         use.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 useActionPerformed(evt);
@@ -84,6 +86,8 @@ public class Register extends javax.swing.JFrame {
         });
         getContentPane().add(use, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 250, 180, 30));
 
+        fin.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        fin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         fin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 finActionPerformed(evt);
@@ -91,6 +95,8 @@ public class Register extends javax.swing.JFrame {
         });
         getContentPane().add(fin, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 180, 30));
 
+        lan.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lan.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         lan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lanActionPerformed(evt);
@@ -98,6 +104,8 @@ public class Register extends javax.swing.JFrame {
         });
         getContentPane().add(lan, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 180, 30));
 
+        can.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        can.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         can.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 canActionPerformed(evt);
@@ -105,6 +113,8 @@ public class Register extends javax.swing.JFrame {
         });
         getContentPane().add(can, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 180, 30));
 
+        em.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        em.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         em.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emActionPerformed(evt);
@@ -133,6 +143,7 @@ public class Register extends javax.swing.JFrame {
         });
         getContentPane().add(show, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 290, 30, 30));
 
+        pass.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         pass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         pass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
