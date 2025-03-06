@@ -48,7 +48,9 @@ public class Register extends javax.swing.JFrame {
         lan = new javax.swing.JTextField();
         can = new javax.swing.JTextField();
         em = new javax.swing.JTextField();
-        passwe = new javax.swing.JPasswordField();
+        hide = new javax.swing.JLabel();
+        show = new javax.swing.JLabel();
+        pass = new javax.swing.JPasswordField();
         ps = new javax.swing.JLabel();
         un = new javax.swing.JLabel();
         emai = new javax.swing.JLabel();
@@ -110,12 +112,34 @@ public class Register extends javax.swing.JFrame {
         });
         getContentPane().add(em, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, 180, 30));
 
-        passwe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passweActionPerformed(evt);
+        hide.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        hide.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/012-hide.png"))); // NOI18N
+        hide.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                hideMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                hideMouseReleased(evt);
             }
         });
-        getContentPane().add(passwe, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, 180, 30));
+        getContentPane().add(hide, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 290, 30, 30));
+
+        show.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        show.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/013-view.png"))); // NOI18N
+        show.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                showMousePressed(evt);
+            }
+        });
+        getContentPane().add(show, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 290, 30, 30));
+
+        pass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        pass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passActionPerformed(evt);
+            }
+        });
+        getContentPane().add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, 180, 30));
 
         ps.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         ps.setForeground(new java.awt.Color(0, 255, 255));
@@ -233,9 +257,9 @@ public class Register extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_emActionPerformed
 
-    private void passweActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passweActionPerformed
+    private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passweActionPerformed
+    }//GEN-LAST:event_passActionPerformed
 
     private void RegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterActionPerformed
         // TODO add your handling code here:
@@ -247,7 +271,7 @@ public class Register extends javax.swing.JFrame {
     
 
  
-    if (fin.getText().isEmpty() || lan.getText().isEmpty() ||  can.getText().isEmpty() ||  em.getText().isEmpty() ||  use.getText().isEmpty() ||  passwe.getPassword().length == 0 ) {
+    if (fin.getText().isEmpty() || lan.getText().isEmpty() ||  can.getText().isEmpty() ||  em.getText().isEmpty() ||  use.getText().isEmpty() ||  pass.getPassword().length == 0 ) {
         JOptionPane.showMessageDialog(null, "All Fields Are Required");
      
 
@@ -296,14 +320,14 @@ public class Register extends javax.swing.JFrame {
     JOptionPane.showMessageDialog(null, "Username is required");
     use.setText(""); 
 } 
-else if (passwe.getPassword().length == 0) {
+else if (pass.getPassword().length == 0) {
     
     JOptionPane.showMessageDialog(null, "Password is required");
-    passwe.setText(""); 
+    pass.setText(""); 
 } 
-else if (passwe.getPassword().length < 8) {
+else if (pass.getPassword().length < 8) {
     JOptionPane.showMessageDialog(null, "Password should have at least 8 characters");
-    passwe.setText("");
+    pass.setText("");
 } 
 
 
@@ -328,7 +352,7 @@ else {
 
               
                 String insertQuery = "INSERT INTO tbl_user(u_fname, u_lname, u_occ, u_cn, u_em, u_user, u_pass, u_status)"
-                        + "VALUES('"+fin.getText()+"', '"+lan.getText()+"', '"+occ.getSelectedItem()+"', '"+can.getText()+"', '"+em.getText()+"', '"+use.getText()+"', '"+passwe.getText()+"', 'Pending')";
+                        + "VALUES('"+fin.getText()+"', '"+lan.getText()+"', '"+occ.getSelectedItem()+"', '"+can.getText()+"', '"+em.getText()+"', '"+use.getText()+"', '"+pass.getText()+"', 'Pending')";
                 
                 if (dbc.insertData(insertQuery) == 0) {
                     JOptionPane.showMessageDialog(null, "Registered Successfully");
@@ -351,7 +375,7 @@ else {
     lan.setText("");  
     can.setText("");  
     em.setText("");  
-    passwe.setText(""); 
+    pass.setText(""); 
 
     }//GEN-LAST:event_ClearActionPerformed
 
@@ -366,6 +390,27 @@ else {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_occActionPerformed
+
+    private void hideMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hideMousePressed
+        // TODO add your handling code here:
+
+        show.setVisible(true);
+        hide.setVisible(false);
+        pass.setEchoChar((char)0);
+    }//GEN-LAST:event_hideMousePressed
+
+    private void hideMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hideMouseReleased
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_hideMouseReleased
+
+    private void showMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showMousePressed
+        // TODO add your handling code here:
+        show.setVisible(false);
+        hide.setVisible(true);
+        pass.setEchoChar('*');
+
+    }//GEN-LAST:event_showMousePressed
 
     /**
      * @param args the command line arguments
@@ -412,6 +457,7 @@ else {
     private javax.swing.JLabel emai;
     private javax.swing.JTextField fin;
     private javax.swing.JLabel firn;
+    private javax.swing.JLabel hide;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuItem jMenuItem1;
@@ -420,8 +466,9 @@ else {
     private javax.swing.JLabel lasn;
     private javax.swing.JComboBox<String> occ;
     private javax.swing.JLabel occ1;
-    private javax.swing.JPasswordField passwe;
+    private javax.swing.JPasswordField pass;
     private javax.swing.JLabel ps;
+    private javax.swing.JLabel show;
     private javax.swing.JLabel un;
     private javax.swing.JTextField use;
     // End of variables declaration//GEN-END:variables

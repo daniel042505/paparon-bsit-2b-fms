@@ -85,11 +85,12 @@ public class LoginPage extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         user = new javax.swing.JTextField();
+        show = new javax.swing.JLabel();
+        hide = new javax.swing.JLabel();
         pass = new javax.swing.JPasswordField();
         register = new javax.swing.JLabel();
         Clear = new javax.swing.JButton();
         Login1 = new javax.swing.JButton();
-        shw = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -131,6 +132,27 @@ public class LoginPage extends javax.swing.JFrame {
         });
         jPanel1.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 190, 30));
 
+        show.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        show.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/013-view.png"))); // NOI18N
+        show.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                showMousePressed(evt);
+            }
+        });
+        jPanel1.add(show, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 30, 30));
+
+        hide.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        hide.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/012-hide.png"))); // NOI18N
+        hide.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                hideMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                hideMouseReleased(evt);
+            }
+        });
+        jPanel1.add(hide, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 30, 30));
+
         pass.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         pass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         pass.addActionListener(new java.awt.event.ActionListener() {
@@ -166,13 +188,6 @@ public class LoginPage extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Login1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 110, 40));
-
-        shw.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                shwActionPerformed(evt);
-            }
-        });
-        jPanel1.add(shw, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 320, 290));
 
@@ -278,23 +293,35 @@ else if (pass.getPassword().length < 8) {
 }
     }//GEN-LAST:event_Login1ActionPerformed
 
-    private void shwActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shwActionPerformed
-        // TODO add your handling code here:
-        if (shw.isSelected()) {
-       
-        pass.setEchoChar((char) 0);
-    } else {
-        
-        pass.setEchoChar('*');
-    }
-    }//GEN-LAST:event_shwActionPerformed
-
     private void WindowOpen(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_WindowOpen
         // TODO add your handling code here:
         
         
                  
     }//GEN-LAST:event_WindowOpen
+
+    private void hideMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hideMousePressed
+        // TODO add your handling code here:
+        
+        show.setVisible(true);
+        hide.setVisible(false);
+        pass.setEchoChar((char)0);
+    }//GEN-LAST:event_hideMousePressed
+
+    private void hideMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hideMouseReleased
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_hideMouseReleased
+
+    private void showMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showMousePressed
+        // TODO add your handling code here:
+        show.setVisible(false);
+        hide.setVisible(true);
+       pass.setEchoChar('\u2022'); 
+       
+
+        
+    }//GEN-LAST:event_showMousePressed
     
       
       
@@ -336,6 +363,7 @@ else if (pass.getPassword().length < 8) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Clear;
     private javax.swing.JButton Login1;
+    private javax.swing.JLabel hide;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -344,7 +372,7 @@ else if (pass.getPassword().length < 8) {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField pass;
     private javax.swing.JLabel register;
-    private javax.swing.JCheckBox shw;
+    private javax.swing.JLabel show;
     private javax.swing.JTextField user;
     // End of variables declaration//GEN-END:variables
 }

@@ -24,6 +24,7 @@ public class createUserForm extends javax.swing.JFrame {
      */
     public createUserForm() {
         initComponents();
+        
     }
 
     /**
@@ -40,6 +41,8 @@ public class createUserForm extends javax.swing.JFrame {
         fin = new javax.swing.JTextField();
         lasn = new javax.swing.JLabel();
         lan = new javax.swing.JTextField();
+        show = new javax.swing.JLabel();
+        hide = new javax.swing.JLabel();
         cn = new javax.swing.JLabel();
         can = new javax.swing.JTextField();
         occ1 = new javax.swing.JLabel();
@@ -49,7 +52,7 @@ public class createUserForm extends javax.swing.JFrame {
         un = new javax.swing.JLabel();
         use = new javax.swing.JTextField();
         ps = new javax.swing.JLabel();
-        passwe = new javax.swing.JPasswordField();
+        pass = new javax.swing.JPasswordField();
         Delete = new javax.swing.JButton();
         add = new javax.swing.JButton();
         stt = new javax.swing.JComboBox<>();
@@ -60,7 +63,6 @@ public class createUserForm extends javax.swing.JFrame {
         refresh = new javax.swing.JButton();
         u_id = new javax.swing.JTextField();
         firn1 = new javax.swing.JLabel();
-        shw = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -94,6 +96,27 @@ public class createUserForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(lan, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 180, 30));
+
+        show.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        show.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/013-view.png"))); // NOI18N
+        show.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                showMousePressed(evt);
+            }
+        });
+        jPanel1.add(show, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 320, 30, 30));
+
+        hide.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        hide.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/012-hide.png"))); // NOI18N
+        hide.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                hideMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                hideMouseReleased(evt);
+            }
+        });
+        jPanel1.add(hide, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 320, 30, 30));
 
         cn.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         cn.setForeground(new java.awt.Color(0, 255, 255));
@@ -154,12 +177,13 @@ public class createUserForm extends javax.swing.JFrame {
         ps.setText("Password:");
         jPanel1.add(ps, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 90, -1));
 
-        passwe.addActionListener(new java.awt.event.ActionListener() {
+        pass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        pass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passweActionPerformed(evt);
+                passActionPerformed(evt);
             }
         });
-        jPanel1.add(passwe, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 180, 30));
+        jPanel1.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 180, 30));
 
         Delete.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Delete.setText("Delete");
@@ -201,7 +225,7 @@ stt.addActionListener(new java.awt.event.ActionListener() {
             CancelActionPerformed(evt);
         }
     });
-    jPanel1.add(Cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 90, 30));
+    jPanel1.add(Cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, 90, 30));
 
     up.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
     up.setText("Update");
@@ -211,7 +235,7 @@ stt.addActionListener(new java.awt.event.ActionListener() {
             upActionPerformed(evt);
         }
     });
-    jPanel1.add(up, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, 90, 30));
+    jPanel1.add(up, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 90, 30));
 
     Clear1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
     Clear1.setText("Clear");
@@ -245,13 +269,6 @@ stt.addActionListener(new java.awt.event.ActionListener() {
     firn1.setText("First Name:");
     jPanel1.add(firn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 100, -1));
 
-    shw.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            shwActionPerformed(evt);
-        }
-    });
-    jPanel1.add(shw, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 330, -1, -1));
-
     getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 400));
 
     pack();
@@ -283,9 +300,9 @@ stt.addActionListener(new java.awt.event.ActionListener() {
         // TODO add your handling code here:
     }//GEN-LAST:event_useActionPerformed
 
-    private void passweActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passweActionPerformed
+    private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passweActionPerformed
+    }//GEN-LAST:event_passActionPerformed
 
     private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
         // TODO add your handling code here:
@@ -296,7 +313,7 @@ stt.addActionListener(new java.awt.event.ActionListener() {
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         // TODO add your handling code here:
 
-        if (fin.getText().isEmpty() || lan.getText().isEmpty() ||  can.getText().isEmpty() ||  em.getText().isEmpty() ||  use.getText().isEmpty() ||  passwe.getPassword().length == 0 ) {
+        if (fin.getText().isEmpty() || lan.getText().isEmpty() ||  can.getText().isEmpty() ||  em.getText().isEmpty() ||  use.getText().isEmpty() ||  pass.getPassword().length == 0 ) {
             JOptionPane.showMessageDialog(null, "All Fields Are Required");
 
         }
@@ -339,14 +356,14 @@ stt.addActionListener(new java.awt.event.ActionListener() {
                     JOptionPane.showMessageDialog(null, "Username is required");
                     use.setText("");
                 }
-                else if (passwe.getPassword().length == 0) {
+                else if (pass.getPassword().length == 0) {
 
                     JOptionPane.showMessageDialog(null, "Password is required");
-                    passwe.setText("");
+                    pass.setText("");
                 }
-                else if (passwe.getPassword().length < 8) {
+                else if (pass.getPassword().length < 8) {
                     JOptionPane.showMessageDialog(null, "Password should have at least 8 characters");
-                    passwe.setText("");
+                    pass.setText("");
                 }
 
                 else {
@@ -367,7 +384,7 @@ stt.addActionListener(new java.awt.event.ActionListener() {
 String insertQuery = "INSERT INTO tbl_user(u_fname, u_lname, u_occ, u_cn, u_em, u_user, u_pass, u_status) " +
                      "VALUES('" + fin.getText() + "', '" + lan.getText() + "', '" + occ.getSelectedItem() + 
                      "', '" + can.getText() + "', '" + em.getText() + "', '" + use.getText() + 
-                     "', '" + new String(passwe.getPassword()) + "', '" + stt.getSelectedItem() + "')";
+                     "', '" + new String(pass.getPassword()) + "', '" + stt.getSelectedItem() + "')";
 
                     if (dbc.insertData(insertQuery) == 0) {
                         JOptionPane.showMessageDialog(null, "Added Successfully");
@@ -394,7 +411,7 @@ String insertQuery = "INSERT INTO tbl_user(u_fname, u_lname, u_occ, u_cn, u_em, 
 
     private void upActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upActionPerformed
         // TODO add your handling code here:
-         if (can.getText().isEmpty() ||  em.getText().isEmpty() ||  use.getText().isEmpty() ||  passwe.getPassword().length == 0 ) {
+         if (can.getText().isEmpty() ||  em.getText().isEmpty() ||  use.getText().isEmpty() ||  pass.getPassword().length == 0 ) {
         JOptionPane.showMessageDialog(null, "All Fields Are Required");
      
 
@@ -438,14 +455,14 @@ String insertQuery = "INSERT INTO tbl_user(u_fname, u_lname, u_occ, u_cn, u_em, 
     JOptionPane.showMessageDialog(null, "Username is required");
     use.setText(""); 
 } 
-else if (passwe.getPassword().length == 0) {
+else if (pass.getPassword().length == 0) {
     
     JOptionPane.showMessageDialog(null, "Password is required");
-    passwe.setText(""); 
+    pass.setText(""); 
 } 
-else if (passwe.getPassword().length < 8) {
+else if (pass.getPassword().length < 8) {
     JOptionPane.showMessageDialog(null, "Password should have at least 8 characters");
-    passwe.setText("");
+    pass.setText("");
 } 
 
 
@@ -486,7 +503,7 @@ else {
 
         
         dbc.UpdateData("UPDATE tbl_user SET u_cn = '"+can.getText()+"', u_em = '"+em.getText()+"', u_user = '"
-                        +use.getText()+"', u_pass = '"+new String(passwe.getPassword())+"', u_status = '"+stt.getSelectedItem()+"' WHERE u_id = '"+u_id.getText()+"'");
+                        +use.getText()+"', u_pass = '"+new String(pass.getPassword())+"', u_status = '"+stt.getSelectedItem()+"' WHERE u_id = '"+u_id.getText()+"'");
 
           JOptionPane.showMessageDialog(null, "Data Uploaded Successfully!");
 
@@ -508,7 +525,7 @@ else {
         lan.setText("");
         can.setText("");
         em.setText("");
-        passwe.setText("");
+        pass.setText("");
     }//GEN-LAST:event_Clear1ActionPerformed
 
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
@@ -519,16 +536,26 @@ else {
         // TODO add your handling code here:
     }//GEN-LAST:event_u_idActionPerformed
 
-    private void shwActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shwActionPerformed
+    private void showMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showMousePressed
         // TODO add your handling code here:
-        if (shw.isSelected()) {
+        show.setVisible(false);
+        hide.setVisible(true);
+        pass.setEchoChar('*');
 
-            passwe.setEchoChar((char) 0);
-        } else {
+    }//GEN-LAST:event_showMousePressed
 
-            passwe.setEchoChar('*');
-        }
-    }//GEN-LAST:event_shwActionPerformed
+    private void hideMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hideMousePressed
+        // TODO add your handling code here:
+
+        show.setVisible(true);
+        hide.setVisible(false);
+        pass.setEchoChar((char)0);
+    }//GEN-LAST:event_hideMousePressed
+
+    private void hideMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hideMouseReleased
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_hideMouseReleased
 
     /**
      * @param args the command line arguments
@@ -577,15 +604,16 @@ else {
     public javax.swing.JTextField fin;
     private javax.swing.JLabel firn;
     private javax.swing.JLabel firn1;
+    private javax.swing.JLabel hide;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JTextField lan;
     private javax.swing.JLabel lasn;
     public javax.swing.JComboBox<String> occ;
     private javax.swing.JLabel occ1;
-    public javax.swing.JPasswordField passwe;
+    public javax.swing.JPasswordField pass;
     private javax.swing.JLabel ps;
     private javax.swing.JButton refresh;
-    private javax.swing.JCheckBox shw;
+    private javax.swing.JLabel show;
     private javax.swing.JLabel st;
     public javax.swing.JComboBox<String> stt;
     public javax.swing.JTextField u_id;

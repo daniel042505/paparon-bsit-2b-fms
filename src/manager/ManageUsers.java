@@ -388,7 +388,7 @@ public class ManageUsers extends javax.swing.JFrame {
                     crf.occ.setSelectedItem(""+rs.getString("u_occ"));
                     crf.em.setText(""+rs.getString("u_em"));
                     crf.use.setText(""+rs.getString("u_user"));
-                    crf.passwe.setText(""+rs.getString("u_pass"));
+                    crf.pass.setText(""+rs.getString("u_pass"));
                     crf.stt.setSelectedItem(""+rs.getString("u_status"));
                     crf.add.setEnabled(false);
                     crf.up.setEnabled(true);
