@@ -21,7 +21,12 @@ public class dbConnect {
             }catch(SQLException ex){
                     System.out.println("Can't connect to database: "+ex.getMessage());
             }
-        }   
+        } 
+        
+         // Add this method to return the connection
+    public Connection getConnection() {
+        return connect;
+    }
        //Function to save data
         public int insertData(String sql){
             int result;

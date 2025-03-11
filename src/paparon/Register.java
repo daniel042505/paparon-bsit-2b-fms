@@ -6,6 +6,8 @@
 package paparon;
 
 import config.dbConnect;
+import config.passwordHasher;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -24,7 +26,7 @@ public class Register extends javax.swing.JFrame {
     public Register() {
         initComponents();
         this.setResizable(false);
-        this.setLocationRelativeTo(null); 
+        
         
 
     }
@@ -239,9 +241,10 @@ public class Register extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/nm.jpg"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -80, 620, 520));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 630, 410));
 
-        setBounds(0, 0, 637, 419);
+        setSize(new java.awt.Dimension(637, 419));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void useActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_useActionPerformed
@@ -346,6 +349,9 @@ else if (pass.getPassword().length < 8) {
 
 else {
      dbConnect dbc = new dbConnect();
+     try{
+     String ps = passwordHasher.hashPassword(pass.getText());
+     
        String checkUsernameQuery = "SELECT COUNT(*) FROM tbl_user WHERE u_user = '" + use.getText() + "'";
                 int usernameCount = dbc.executeQueryForCount(checkUsernameQuery);
                 if (usernameCount > 0) {
@@ -361,9 +367,11 @@ else {
                     return; 
                 }
 
-              
+               
+               
+                        
                 String insertQuery = "INSERT INTO tbl_user(u_fname, u_lname, u_occ, u_cn, u_em, u_user, u_pass, u_status)"
-                        + "VALUES('"+fin.getText()+"', '"+lan.getText()+"', '"+occ.getSelectedItem()+"', '"+can.getText()+"', '"+em.getText()+"', '"+use.getText()+"', '"+pass.getText()+"', 'Pending')";
+                        + "VALUES('"+fin.getText()+"', '"+lan.getText()+"', '"+occ.getSelectedItem()+"', '"+can.getText()+"', '"+em.getText()+"', '"+use.getText()+"', '"+ps+"', 'Pending')";
                 
                 if (dbc.insertData(insertQuery) == 0) {
                     JOptionPane.showMessageDialog(null, "Registered Successfully");
@@ -374,10 +382,16 @@ else {
     new LoginPage().setVisible(true);
     this.setVisible(false);
     this.dispose();
+
+     }catch(NoSuchAlgorithmException ex){
+         System.out.println(""+ex);
 }
     }//GEN-LAST:event_RegisterActionPerformed
      }
+     }
     }
+    
+    
     private void ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearActionPerformed
         // TODO add your handling code here:
         

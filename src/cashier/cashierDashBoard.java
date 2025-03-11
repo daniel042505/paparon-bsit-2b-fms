@@ -21,7 +21,9 @@ public class cashierDashBoard extends javax.swing.JFrame {
     public cashierDashBoard() {
         initComponents();
         this.setResizable(false);
-        this.setLocationRelativeTo(null); 
+       this.pack();
+      this.setLocationRelativeTo(null);
+      this.setVisible(true);
     }
 
     /**
@@ -35,6 +37,7 @@ public class cashierDashBoard extends javax.swing.JFrame {
 
         user = new javax.swing.JLabel();
         acc_name = new javax.swing.JLabel();
+        logout = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -51,14 +54,14 @@ public class cashierDashBoard extends javax.swing.JFrame {
         user.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         user.setForeground(new java.awt.Color(255, 255, 255));
         user.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/011-info.png"))); // NOI18N
-        user.setText("USERS");
+        user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/016-food-delivery.png"))); // NOI18N
+        user.setText("ORDERS");
         user.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 userMouseClicked(evt);
             }
         });
-        getContentPane().add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 120, 50));
+        getContentPane().add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 120, 50));
 
         acc_name.setBackground(new java.awt.Color(102, 0, 102));
         acc_name.setDisplayedMnemonic('U');
@@ -74,6 +77,20 @@ public class cashierDashBoard extends javax.swing.JFrame {
         });
         getContentPane().add(acc_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 120, 50));
 
+        logout.setBackground(new java.awt.Color(102, 0, 102));
+        logout.setDisplayedMnemonic('U');
+        logout.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        logout.setForeground(new java.awt.Color(255, 255, 255));
+        logout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/015-logout-1.png"))); // NOI18N
+        logout.setText("LOGOUT");
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutMouseClicked(evt);
+            }
+        });
+        getContentPane().add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, 120, 50));
+
         jLabel1.setBackground(new java.awt.Color(0, 153, 153));
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 255, 255));
@@ -85,13 +102,19 @@ public class cashierDashBoard extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/nm.jpg"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 330));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 340));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void acc_nameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_acc_nameMouseClicked
         // TODO add your handling code here:
+        
+        
+        
+     new cashierInfo().setVisible(true);
+     this.setVisible(false);
     }//GEN-LAST:event_acc_nameMouseClicked
 
     private void userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMouseClicked
@@ -112,10 +135,17 @@ public class cashierDashBoard extends javax.swing.JFrame {
        this.setVisible(false);
        this.dispose();
        }else{
-            acc_name.setText(""+sess.getFname());
+       acc_name.setText(""+sess.getFname());
        }
        
     }//GEN-LAST:event_formWindowActivated
+
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
+        // TODO add your handling code here:
+        new LoginPage().setVisible(true);
+        this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_logoutMouseClicked
 
     /**
      * @param args the command line arguments
@@ -156,6 +186,7 @@ public class cashierDashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel acc_name;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel logout;
     private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
 }

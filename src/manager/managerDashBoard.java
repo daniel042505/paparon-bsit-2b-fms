@@ -21,7 +21,9 @@ public class managerDashBoard extends javax.swing.JFrame {
     public managerDashBoard() {
         initComponents();
         this.setResizable(false);
-        this.setLocationRelativeTo(null); 
+        this.pack();
+      this.setLocationRelativeTo(null);
+      this.setVisible(true);
     }
   
     
@@ -43,6 +45,7 @@ public class managerDashBoard extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         user = new javax.swing.JLabel();
         acc_name = new javax.swing.JLabel();
+        logout = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -50,7 +53,6 @@ public class managerDashBoard extends javax.swing.JFrame {
                 formWindowActivated(evt);
             }
         });
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 51, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -61,9 +63,9 @@ public class managerDashBoard extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("WELCOME TO MANAGER DASHBOARD");
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 575, 38));
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 575, 40));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 60));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 70));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 610, -1));
@@ -74,14 +76,14 @@ public class managerDashBoard extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
+            .addGap(0, 470, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
+            .addGap(0, 370, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 490, 350));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 470, 370));
 
         user.setBackground(new java.awt.Color(102, 0, 102));
         user.setDisplayedMnemonic('U');
@@ -95,7 +97,7 @@ public class managerDashBoard extends javax.swing.JFrame {
                 userMouseClicked(evt);
             }
         });
-        jPanel1.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 130, 120, 50));
+        jPanel1.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 120, 50));
 
         acc_name.setBackground(new java.awt.Color(102, 0, 102));
         acc_name.setDisplayedMnemonic('U');
@@ -111,7 +113,21 @@ public class managerDashBoard extends javax.swing.JFrame {
         });
         jPanel1.add(acc_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 120, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 410));
+        logout.setBackground(new java.awt.Color(102, 0, 102));
+        logout.setDisplayedMnemonic('U');
+        logout.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        logout.setForeground(new java.awt.Color(255, 255, 255));
+        logout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/014-logout.png"))); // NOI18N
+        logout.setText("LOGOUT");
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutMouseClicked(evt);
+            }
+        });
+        jPanel1.add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 120, 50));
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -141,6 +157,7 @@ public class managerDashBoard extends javax.swing.JFrame {
        this.dispose();
        }else{
        acc_name.setText(""+sess.getFname());
+       
        }
        
        
@@ -148,6 +165,13 @@ public class managerDashBoard extends javax.swing.JFrame {
        
          
     }//GEN-LAST:event_formWindowActivated
+
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
+        // TODO add your handling code here:
+        new LoginPage().setVisible(true);
+        this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_logoutMouseClicked
 
     /**
      * @param args the command line arguments
@@ -191,6 +215,7 @@ public class managerDashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel logout;
     private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
 }

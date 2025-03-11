@@ -6,6 +6,8 @@
 package manager;
 
 import config.dbConnect;
+import java.awt.Color;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.regex.Matcher;
@@ -26,6 +28,9 @@ public class createUserForm extends javax.swing.JFrame {
         initComponents();
         
     }
+    
+     Color navcolor = new Color(102,0,102);
+        Color hovercolor = new Color(153,0,255);
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,16 +58,15 @@ public class createUserForm extends javax.swing.JFrame {
         use = new javax.swing.JTextField();
         ps = new javax.swing.JLabel();
         pass = new javax.swing.JPasswordField();
-        Delete = new javax.swing.JButton();
-        add = new javax.swing.JButton();
         stt = new javax.swing.JComboBox<>();
         st = new javax.swing.JLabel();
-        Cancel = new javax.swing.JButton();
+        add = new javax.swing.JButton();
         up = new javax.swing.JButton();
         Clear1 = new javax.swing.JButton();
         refresh = new javax.swing.JButton();
         u_id = new javax.swing.JTextField();
         firn1 = new javax.swing.JLabel();
+        Cancel1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -76,6 +80,7 @@ public class createUserForm extends javax.swing.JFrame {
         firn.setText("User Id:");
         jPanel1.add(firn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 100, -1));
 
+        fin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         fin.setEnabled(false);
         fin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,6 +95,7 @@ public class createUserForm extends javax.swing.JFrame {
         lasn.setText("Last Name: ");
         jPanel1.add(lasn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 100, 20));
 
+        lan.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         lan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lanActionPerformed(evt);
@@ -124,6 +130,7 @@ public class createUserForm extends javax.swing.JFrame {
         cn.setText("Contact Number:");
         jPanel1.add(cn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 130, 20));
 
+        can.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         can.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 canActionPerformed(evt);
@@ -151,6 +158,7 @@ public class createUserForm extends javax.swing.JFrame {
         emai.setText("Email:");
         jPanel1.add(emai, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 100, -1));
 
+        em.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         em.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emActionPerformed(evt);
@@ -164,6 +172,7 @@ public class createUserForm extends javax.swing.JFrame {
         un.setText("Username:");
         jPanel1.add(un, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 90, 20));
 
+        use.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         use.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 useActionPerformed(evt);
@@ -185,24 +194,6 @@ public class createUserForm extends javax.swing.JFrame {
         });
         jPanel1.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 180, 30));
 
-        Delete.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        Delete.setText("Delete");
-        Delete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeleteActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, 90, 30));
-
-        add.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        add.setText("Add");
-        add.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addActionPerformed(evt);
-            }
-        });
-        jPanel1.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 90, 30));
-
         stt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Active", "Pending"
             + ""}));
 stt.addActionListener(new java.awt.event.ActionListener() {
@@ -218,14 +209,14 @@ stt.addActionListener(new java.awt.event.ActionListener() {
     st.setText("Status:");
     jPanel1.add(st, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 90, -1));
 
-    Cancel.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-    Cancel.setText("Cancel");
-    Cancel.addActionListener(new java.awt.event.ActionListener() {
+    add.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+    add.setText("Add");
+    add.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            CancelActionPerformed(evt);
+            addActionPerformed(evt);
         }
     });
-    jPanel1.add(Cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, 90, 30));
+    jPanel1.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 90, 30));
 
     up.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
     up.setText("Update");
@@ -235,7 +226,7 @@ stt.addActionListener(new java.awt.event.ActionListener() {
             upActionPerformed(evt);
         }
     });
-    jPanel1.add(up, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 90, 30));
+    jPanel1.add(up, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 90, 30));
 
     Clear1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
     Clear1.setText("Clear");
@@ -244,7 +235,7 @@ stt.addActionListener(new java.awt.event.ActionListener() {
             Clear1ActionPerformed(evt);
         }
     });
-    jPanel1.add(Clear1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 90, 30));
+    jPanel1.add(Clear1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 90, 30));
 
     refresh.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
     refresh.setText("Refresh");
@@ -253,8 +244,9 @@ stt.addActionListener(new java.awt.event.ActionListener() {
             refreshActionPerformed(evt);
         }
     });
-    jPanel1.add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 150, 90, 30));
+    jPanel1.add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 360, 90, 30));
 
+    u_id.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     u_id.setEnabled(false);
     u_id.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -268,6 +260,15 @@ stt.addActionListener(new java.awt.event.ActionListener() {
     firn1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     firn1.setText("First Name:");
     jPanel1.add(firn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 100, -1));
+
+    Cancel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+    Cancel1.setText("Cancel");
+    Cancel1.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            Cancel1ActionPerformed(evt);
+        }
+    });
+    jPanel1.add(Cancel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 360, 90, 30));
 
     getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 400));
 
@@ -304,110 +305,107 @@ stt.addActionListener(new java.awt.event.ActionListener() {
         // TODO add your handling code here:
     }//GEN-LAST:event_passActionPerformed
 
-    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
-        // TODO add your handling code here:
-
-       
-    }//GEN-LAST:event_DeleteActionPerformed
-
-    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-        // TODO add your handling code here:
-
-        if (fin.getText().isEmpty() || lan.getText().isEmpty() ||  can.getText().isEmpty() ||  em.getText().isEmpty() ||  use.getText().isEmpty() ||  pass.getPassword().length == 0 ) {
-            JOptionPane.showMessageDialog(null, "All Fields Are Required");
-
-        }
-        else if (fin.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "First Name is required");
-            fin.setText("");
-        }
-        else if (lan.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "First Name is required");
-            lan.setText("");
-        }
-        else if (can.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Contact Number is required");
-            can.setText("");
-        } else {
-            String input = can.getText();
-            if (!input.matches("[0-9]{11}")) {
-                JOptionPane.showMessageDialog(null, "Please enter a valid contact number (11 digits only)");
-                can.setText("");
-            }
-
-            else if (em.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Email is required");
-                em.setText("");
-
-            }
-            else {
-                String email = em.getText();
-
-                String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-                Pattern pattern = Pattern.compile(emailRegex);
-                Matcher matcher = pattern.matcher(email);
-
-                if (!matcher.matches()) {
-                    JOptionPane.showMessageDialog(null, "Please enter a valid email with @yahoo.com or @gmail.com");
-                    em.setText("");
-                }
-
-                else if (use.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Username is required");
-                    use.setText("");
-                }
-                else if (pass.getPassword().length == 0) {
-
-                    JOptionPane.showMessageDialog(null, "Password is required");
-                    pass.setText("");
-                }
-                else if (pass.getPassword().length < 8) {
-                    JOptionPane.showMessageDialog(null, "Password should have at least 8 characters");
-                    pass.setText("");
-                }
-
-                else {
-                    dbConnect dbc = new dbConnect();
-                    String checkUsernameQuery = "SELECT COUNT(*) FROM tbl_user WHERE u_user = '" + use.getText() + "'";
-                    int usernameCount = dbc.executeQueryForCount(checkUsernameQuery);
-                    if (usernameCount > 0) {
-                        JOptionPane.showMessageDialog(null, "Username is already taken");
-                        return;
-                    }
-
-                    String checkEmailQuery = "SELECT COUNT(*) FROM tbl_user WHERE u_em = '" + em.getText() + "'";
-                    int emailCount = dbc.executeQueryForCount(checkEmailQuery);
-                    if (emailCount > 0) {
-                        JOptionPane.showMessageDialog(null, "Email is already registered");
-                        return;
-                    }
-String insertQuery = "INSERT INTO tbl_user(u_fname, u_lname, u_occ, u_cn, u_em, u_user, u_pass, u_status) " +
-                     "VALUES('" + fin.getText() + "', '" + lan.getText() + "', '" + occ.getSelectedItem() + 
-                     "', '" + can.getText() + "', '" + em.getText() + "', '" + use.getText() + 
-                     "', '" + new String(pass.getPassword()) + "', '" + stt.getSelectedItem() + "')";
-
-                    if (dbc.insertData(insertQuery) == 0) {
-                        JOptionPane.showMessageDialog(null, "Added Successfully");
-                    }
-
-                    new ManageUsers().setVisible(true);
-                    this.setVisible(false);
-                    this.dispose();
-                }
-            }
-        }
-    }//GEN-LAST:event_addActionPerformed
-
     private void sttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sttActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_sttActionPerformed
 
-    private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
+    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         // TODO add your handling code here:
-        new ManageUsers().setVisible(true);
-        this.setVisible(false);
-        this.dispose();
-    }//GEN-LAST:event_CancelActionPerformed
+        if (fin.getText().isEmpty() || lan.getText().isEmpty() ||  can.getText().isEmpty() ||  em.getText().isEmpty() ||  use.getText().isEmpty() ||  pass.getPassword().length == 0 ) {
+        JOptionPane.showMessageDialog(null, "All Fields Are Required");
+     
+
+
+    } 
+    else if (fin.getText().isEmpty()){
+    JOptionPane.showMessageDialog(null, "First Name is required");
+    fin.setText("");
+    }
+     else if (lan.getText().isEmpty()){
+    JOptionPane.showMessageDialog(null, "First Name is required");
+    lan.setText("");
+     }
+     else if (can.getText().isEmpty()) {
+    JOptionPane.showMessageDialog(null, "Contact Number is required");
+    can.setText("");
+} else {
+    String input = can.getText();
+    if (!input.matches("[0-9]{11}")) {  
+        JOptionPane.showMessageDialog(null, "Please enter a valid contact number (11 digits only)");
+        can.setText("");
+    }
+
+    
+    else if (em.getText().isEmpty()) {
+    JOptionPane.showMessageDialog(null, "Email is required");
+    em.setText(""); 
+      
+     
+}
+      else {
+            String email = em.getText();
+            
+           
+            String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+            Pattern pattern = Pattern.compile(emailRegex);
+            Matcher matcher = pattern.matcher(email);
+
+            if (!matcher.matches()) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid email with @yahoo.com or @gmail.com");
+                em.setText("");
+            }
+      
+              
+   else if (use.getText().isEmpty()) {
+    JOptionPane.showMessageDialog(null, "Username is required");
+    use.setText(""); 
+} 
+else if (pass.getPassword().length == 0) {
+    
+    JOptionPane.showMessageDialog(null, "Password is required");
+    pass.setText(""); 
+} 
+else if (pass.getPassword().length < 8) {
+    JOptionPane.showMessageDialog(null, "Password should have at least 8 characters");
+    pass.setText("");
+} 
+
+
+   
+
+else {
+     dbConnect dbc = new dbConnect();
+       String checkUsernameQuery = "SELECT COUNT(*) FROM tbl_user WHERE u_user = '" + use.getText() + "'";
+                int usernameCount = dbc.executeQueryForCount(checkUsernameQuery);
+                if (usernameCount > 0) {
+                    JOptionPane.showMessageDialog(null, "Username is already taken");
+                    return;
+                }
+
+                
+                String checkEmailQuery = "SELECT COUNT(*) FROM tbl_user WHERE u_em = '" + em.getText() + "'";
+                int emailCount = dbc.executeQueryForCount(checkEmailQuery);
+                if (emailCount > 0) {
+                    JOptionPane.showMessageDialog(null, "Email is already registered");
+                    return; 
+                }
+
+              
+                String insertQuery = "INSERT INTO tbl_user(u_fname, u_lname, u_occ, u_cn, u_em, u_user, u_pass, u_status)"
+                        + "VALUES('"+fin.getText()+"', '"+lan.getText()+"', '"+occ.getSelectedItem()+"', '"+can.getText()+"', '"+em.getText()+"', '"+use.getText()+"', '"+pass.getText()+"', 'Pending')";
+                
+                if (dbc.insertData(insertQuery) == 0) {
+                    JOptionPane.showMessageDialog(null, "Registered Successfully");
+                }
+                new ManageUsers().setVisible(true);
+                this.setVisible(false);
+                this.dispose();
+                
+}
+    }
+     }
+            
+    }//GEN-LAST:event_addActionPerformed
 
     private void upActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upActionPerformed
         // TODO add your handling code here:
@@ -521,7 +519,6 @@ else {
     private void Clear1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Clear1ActionPerformed
         // TODO add your handling code here:
          use.setText("");
-        fin.setText("");
         lan.setText("");
         can.setText("");
         em.setText("");
@@ -530,6 +527,43 @@ else {
 
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
         // TODO add your handling code here:
+        String userId = u_id.getText();
+
+    if (userId.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "User ID is missing. Cannot refresh data.");
+        return;
+    }
+
+    dbConnect dbc = new dbConnect();
+
+    try {
+        
+        String query = "SELECT u_lname, u_cn, u_em, u_user, u_pass, u_status FROM tbl_user WHERE u_id = ?";
+        PreparedStatement pst = dbc.getConnection().prepareStatement(query);
+        pst.setString(1, userId);
+        ResultSet rs = pst.executeQuery();
+
+        if (rs.next()) {
+            // Set values back to the text fields
+            lan.setText(rs.getString("u_lname"));
+            can.setText(rs.getString("u_cn"));  
+            em.setText(rs.getString("u_em"));  
+            use.setText(rs.getString("u_user"));
+            pass.setText(rs.getString("u_pass")); 
+            stt.setSelectedItem(rs.getString("u_status"));
+
+            JOptionPane.showMessageDialog(null, "Fields refreshed successfully!");
+        } else {
+            JOptionPane.showMessageDialog(null, "User not found.");
+        }
+
+        rs.close();
+        pst.close();
+
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error refreshing data: " + ex.getMessage());
+    }
+      
     }//GEN-LAST:event_refreshActionPerformed
 
     private void u_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_u_idActionPerformed
@@ -556,6 +590,13 @@ else {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_hideMouseReleased
+
+    private void Cancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancel1ActionPerformed
+        // TODO add your handling code here:
+        new ManageUsers().setVisible(true);
+        this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_Cancel1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -593,9 +634,8 @@ else {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Cancel;
+    private javax.swing.JButton Cancel1;
     private javax.swing.JButton Clear1;
-    private javax.swing.JButton Delete;
     public javax.swing.JButton add;
     public javax.swing.JTextField can;
     private javax.swing.JLabel cn;

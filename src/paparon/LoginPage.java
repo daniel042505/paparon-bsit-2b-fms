@@ -8,6 +8,8 @@ package paparon;
 import cashier.cashierDashBoard;
 import config.Session;
 import config.dbConnect;
+import config.passwordHasher;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -38,9 +40,15 @@ public class LoginPage extends javax.swing.JFrame {
      dbConnect connect = new dbConnect();
      
      try{
-    String query = "SELECT * FROM tbl_user WHERE u_user = '" +username+ "' AND u_pass = '" +password+"'";
+    String query = "SELECT * FROM tbl_user WHERE u_user = '" +username+ "'";
     ResultSet resultSet = connect.getData(query);
     if(resultSet.next()){
+   
+
+    String hashedPass = resultSet.getString("u_pass");
+    String rehashedPass = passwordHasher.hashPassword(password);
+    
+    if(hashedPass.equals(rehashedPass)){
     status = resultSet.getString("u_status");
     occupation = resultSet.getString("u_occ");
     Session sess = Session.getInstance();
@@ -51,20 +59,22 @@ public class LoginPage extends javax.swing.JFrame {
      sess.setCn(resultSet.getString("u_cn"));
     sess.setEmail(resultSet.getString("u_em"));
     sess.setUser(resultSet.getString("u_user"));
-    sess.setPass(resultSet.getString("u_pass"));
     sess.setStatus(resultSet.getString("u_status"));
     return true;
     
+          
+     }else{
+         return false;   
+          }
     }else{
         return false;
     }
-    
-             } catch(SQLException ex){
-              
+             } catch(SQLException | NoSuchAlgorithmException ex){
              return false;
      }
      
     }
+
 
     
 
@@ -80,8 +90,8 @@ public class LoginPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        cross = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         user = new javax.swing.JTextField();
@@ -91,10 +101,12 @@ public class LoginPage extends javax.swing.JFrame {
         register = new javax.swing.JLabel();
         Clear = new javax.swing.JButton();
         Login1 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 WindowOpen(evt);
@@ -102,13 +114,18 @@ public class LoginPage extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        cross.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        cross.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cross.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/020-cross.png"))); // NOI18N
+        cross.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                crossMouseClicked(evt);
+            }
+        });
+        getContentPane().add(cross, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 40, -1));
+
         jPanel1.setBackground(new java.awt.Color(153, 0, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Login Form");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 270, 50));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setText("Password:");
@@ -189,18 +206,23 @@ public class LoginPage extends javax.swing.JFrame {
         });
         jPanel1.add(Login1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 110, 40));
 
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Login Form");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 270, 50));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 320, 290));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 204, 204));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Food Management System");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, -10, 320, 70));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 320, 60));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/saw.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -50, 630, 510));
 
-        setSize(new java.awt.Dimension(626, 428));
+        setSize(new java.awt.Dimension(610, 389));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -322,6 +344,22 @@ else if (pass.getPassword().length < 8) {
 
         
     }//GEN-LAST:event_showMousePressed
+
+    private void crossMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crossMouseClicked
+        // TODO add your handling code here:
+         int choice = JOptionPane.showConfirmDialog(
+        this, 
+        "Are you sure you want to exit?", 
+        "Exit Confirmation", 
+        JOptionPane.YES_NO_OPTION
+    );
+
+    if (choice == JOptionPane.YES_OPTION) {
+        System.exit(0); // Exits the application
+    }
+
+        
+    }//GEN-LAST:event_crossMouseClicked
     
       
       
@@ -363,12 +401,13 @@ else if (pass.getPassword().length < 8) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Clear;
     private javax.swing.JButton Login1;
+    private javax.swing.JLabel cross;
     private javax.swing.JLabel hide;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField pass;
     private javax.swing.JLabel register;
