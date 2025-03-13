@@ -55,6 +55,7 @@ public class changePass extends javax.swing.JFrame {
         acc_name = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -222,14 +223,24 @@ public class changePass extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         Session sess = Session.getInstance();
+        
+         if(sess.getUid() == 0){    
        
+       JOptionPane.showMessageDialog(null,"No Account, Login First" );
+       
+       new LoginPage().setVisible(true);
+       this.setVisible(false);
+       this.dispose();
+
+         }
        acc_name.setText(""+sess.getFname());
+      
        
         
         
         
         
-        
+         
         
     }//GEN-LAST:event_formWindowActivated
 

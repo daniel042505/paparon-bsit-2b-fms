@@ -6,7 +6,9 @@
 package manager;
 
 import config.dbConnect;
+import config.passwordHasher;
 import java.awt.Color;
+import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -69,6 +71,7 @@ public class createUserForm extends javax.swing.JFrame {
         Cancel1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(102, 0, 102));
@@ -322,7 +325,7 @@ stt.addActionListener(new java.awt.event.ActionListener() {
     fin.setText("");
     }
      else if (lan.getText().isEmpty()){
-    JOptionPane.showMessageDialog(null, "First Name is required");
+    JOptionPane.showMessageDialog(null, "Last Name is required");
     lan.setText("");
      }
      else if (can.getText().isEmpty()) {
@@ -375,6 +378,9 @@ else if (pass.getPassword().length < 8) {
 
 else {
      dbConnect dbc = new dbConnect();
+      try{
+     String ps = passwordHasher.hashPassword(pass.getText());
+     String status = (String )stt.getSelectedItem();
        String checkUsernameQuery = "SELECT COUNT(*) FROM tbl_user WHERE u_user = '" + use.getText() + "'";
                 int usernameCount = dbc.executeQueryForCount(checkUsernameQuery);
                 if (usernameCount > 0) {
@@ -392,7 +398,7 @@ else {
 
               
                 String insertQuery = "INSERT INTO tbl_user(u_fname, u_lname, u_occ, u_cn, u_em, u_user, u_pass, u_status)"
-                        + "VALUES('"+fin.getText()+"', '"+lan.getText()+"', '"+occ.getSelectedItem()+"', '"+can.getText()+"', '"+em.getText()+"', '"+use.getText()+"', '"+pass.getText()+"', 'Pending')";
+                        + "VALUES('"+fin.getText()+"', '"+lan.getText()+"', '"+occ.getSelectedItem()+"', '"+can.getText()+"', '"+em.getText()+"', '"+use.getText()+"', '"+ps+"', "+status+")";
                 
                 if (dbc.insertData(insertQuery) == 0) {
                     JOptionPane.showMessageDialog(null, "Registered Successfully");
@@ -401,6 +407,9 @@ else {
                 this.setVisible(false);
                 this.dispose();
                 
+                }catch(NoSuchAlgorithmException ex){
+         System.out.println(""+ex);
+                }
 }
     }
      }
@@ -416,6 +425,11 @@ else {
 
     } 
    
+          
+     else if (lan.getText().isEmpty()) {
+    JOptionPane.showMessageDialog(null, "Last Name is required");
+    lan.setText("");
+     }
      
      
      else if (can.getText().isEmpty()) {
@@ -468,6 +482,9 @@ else if (pass.getPassword().length < 8) {
 
 else {
       
+     String occupation = (String )occ.getSelectedItem();
+     String status = (String )stt.getSelectedItem();
+     
         dbConnect dbc = new dbConnect();
         
                    try {
@@ -498,10 +515,10 @@ else {
             }
         }
         rs.close();
-
+         
         
-        dbc.UpdateData("UPDATE tbl_user SET u_cn = '"+can.getText()+"', u_em = '"+em.getText()+"', u_user = '"
-                        +use.getText()+"', u_pass = '"+new String(pass.getPassword())+"', u_status = '"+stt.getSelectedItem()+"' WHERE u_id = '"+u_id.getText()+"'");
+        dbc.UpdateData("UPDATE tbl_user SET u_lname = '"+lan.getText()+"', u_cn = '"+can.getText()+"', u_occ = '"+occupation+"', u_em = '"+em.getText()+"', u_user = '"
+                        +use.getText()+"', u_pass = '"+new String(pass.getPassword())+"', u_status = '"+status+"' WHERE u_id = '"+u_id.getText()+"'");
 
           JOptionPane.showMessageDialog(null, "Data Uploaded Successfully!");
 

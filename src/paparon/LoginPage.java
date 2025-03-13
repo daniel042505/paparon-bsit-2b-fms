@@ -122,18 +122,18 @@ public class LoginPage extends javax.swing.JFrame {
                 crossMouseClicked(evt);
             }
         });
-        getContentPane().add(cross, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 40, -1));
+        getContentPane().add(cross, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, 40, -1));
 
         jPanel1.setBackground(new java.awt.Color(153, 0, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setText("Password:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 90, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 90, 30));
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel5.setText("Username:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 90, 30));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 90, 30));
 
         user.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         user.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -147,7 +147,7 @@ public class LoginPage extends javax.swing.JFrame {
                 userActionPerformed(evt);
             }
         });
-        jPanel1.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 190, 30));
+        jPanel1.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 190, 30));
 
         show.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         show.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/013-view.png"))); // NOI18N
@@ -156,7 +156,7 @@ public class LoginPage extends javax.swing.JFrame {
                 showMousePressed(evt);
             }
         });
-        jPanel1.add(show, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 30, 30));
+        jPanel1.add(show, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 30, 30));
 
         hide.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         hide.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/012-hide.png"))); // NOI18N
@@ -168,7 +168,7 @@ public class LoginPage extends javax.swing.JFrame {
                 hideMouseReleased(evt);
             }
         });
-        jPanel1.add(hide, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 30, 30));
+        jPanel1.add(hide, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 30, 30));
 
         pass.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         pass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -177,16 +177,17 @@ public class LoginPage extends javax.swing.JFrame {
                 passActionPerformed(evt);
             }
         });
-        jPanel1.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 190, 30));
+        jPanel1.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 190, 30));
 
         register.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        register.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         register.setText("Are you a new User? Click here to Register!");
         register.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 registerMouseClicked(evt);
             }
         });
-        jPanel1.add(register, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 250, 20));
+        jPanel1.add(register, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 320, 20));
 
         Clear.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         Clear.setText("Clear");
@@ -195,7 +196,7 @@ public class LoginPage extends javax.swing.JFrame {
                 ClearActionPerformed(evt);
             }
         });
-        jPanel1.add(Clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 110, 40));
+        jPanel1.add(Clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 90, 30));
 
         Login1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         Login1.setText("Login");
@@ -204,7 +205,7 @@ public class LoginPage extends javax.swing.JFrame {
                 Login1ActionPerformed(evt);
             }
         });
-        jPanel1.add(Login1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 110, 40));
+        jPanel1.add(Login1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 90, 30));
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -217,12 +218,12 @@ public class LoginPage extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(0, 204, 204));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Food Management System");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 320, 60));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 320, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/saw.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -50, 630, 510));
 
-        setSize(new java.awt.Dimension(610, 389));
+        setSize(new java.awt.Dimension(610, 398));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -260,7 +261,7 @@ public class LoginPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         
          String username = user.getText();
-    String password = new String(pass.getPassword()); 
+          String password = new String(pass.getPassword()); 
 
        
 

@@ -77,6 +77,7 @@ public class Register extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         use.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -243,7 +244,7 @@ public class Register extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/nm.jpg"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 630, 410));
 
-        setSize(new java.awt.Dimension(637, 419));
+        setSize(new java.awt.Dimension(621, 380));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
