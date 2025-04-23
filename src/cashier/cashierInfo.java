@@ -7,11 +7,23 @@ package cashier;
 
 import config.Session;
 import config.dbConnect;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import manager.ManageUsers;
 
@@ -29,6 +41,71 @@ public class cashierInfo extends javax.swing.JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null); 
     }
+    
+    public String destination = "";
+    File selectedFile;
+    public String oldpath;
+    public String path; 
+    
+    public int FileExistenceChecker(String path){
+        File file = new File(path);
+        String fileName = file.getName();
+        
+        Path filePath = Paths.get("src/userimages", fileName);
+        boolean fileExists = Files.exists(filePath);
+        
+        if (fileExists) {
+            return 1;
+        } else {
+            return 0;
+        }
+    
+    }
+    
+          
+    public static int getHeightFromWidth(String imagePath, int desiredWidth) {
+        try {
+            // Read the image file
+            File imageFile = new File(imagePath);
+            BufferedImage image = ImageIO.read(imageFile);
+            
+            // Get the original width and height of the image
+            int originalWidth = image.getWidth();
+            int originalHeight = image.getHeight();
+            
+            // Calculate the new height based on the desired width and the aspect ratio
+            int newHeight = (int) ((double) desiredWidth / originalWidth * originalHeight);
+            
+            return newHeight;
+        } catch (IOException ex) {
+            System.out.println("No image found!");
+        }
+        
+        return -1;
+    }
+    
+    
+        public  ImageIcon ResizeImage(String ImagePath, byte[] pic, JLabel label) {
+    ImageIcon MyImage = null;
+        if(ImagePath !=null){
+            MyImage = new ImageIcon(ImagePath);
+        }else{
+            MyImage = new ImageIcon(pic);
+        }
+        
+        
+         int newHeight = getHeightFromWidth(ImagePath, label.getWidth());
+
+    Image img = MyImage.getImage();
+    Image newImg = img.getScaledInstance(label.getWidth(), newHeight, Image.SCALE_SMOOTH);
+    ImageIcon image = new ImageIcon(newImg);
+    return image;
+}
+
+  
+
+        
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,6 +120,7 @@ public class cashierInfo extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         fname = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        image = new javax.swing.JLabel();
         uid = new javax.swing.JLabel();
         lasn3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -50,10 +128,12 @@ public class cashierInfo extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        add = new javax.swing.JButton();
+        select1 = new javax.swing.JButton();
+        remove1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(null);
         setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
@@ -75,18 +155,10 @@ public class cashierInfo extends javax.swing.JFrame {
         fname.setText("First Name");
         jPanel1.add(fname, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, 260, 40));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 210, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 270, Short.MAX_VALUE)
-        );
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -1, 210, 270));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 210, 270));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 210, 270));
 
         uid.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         uid.setForeground(new java.awt.Color(240, 240, 240));
@@ -137,6 +209,33 @@ public class cashierInfo extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 60, 50));
 
+        add.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        add.setText("ADD");
+        add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addActionPerformed(evt);
+            }
+        });
+        jPanel1.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, 90, 30));
+
+        select1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        select1.setText("SELECT");
+        select1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                select1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(select1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 90, 30));
+
+        remove1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        remove1.setText("REMOVE");
+        remove1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                remove1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(remove1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 100, 30));
+
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/saw.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -181,6 +280,61 @@ public class cashierInfo extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel7MouseClicked
 
+    private void select1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select1ActionPerformed
+        // TODO add your handling code here:
+        
+        JFileChooser fileChooser = new JFileChooser();
+                int returnValue = fileChooser.showOpenDialog(null);
+                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                    try {
+                        selectedFile = fileChooser.getSelectedFile();
+                        destination = "src/userimages/" + selectedFile.getName();
+                        path  = selectedFile.getAbsolutePath();
+                        
+                        
+                        if(FileExistenceChecker(path) == 1){
+                          JOptionPane.showMessageDialog(null, "File Already Exist, Rename or Choose another!");
+                            destination = "";
+                            path="";
+                        }else{
+                            image.setIcon(ResizeImage(path, null, image));
+                            
+                        }
+                    } catch (Exception ex) {
+                        System.out.println("File Error!");
+                    }
+                }
+    }//GEN-LAST:event_select1ActionPerformed
+
+    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
+        // TODO add your handling code here:
+        
+       
+  
+        
+    
+    dbConnect dbc = new dbConnect();
+    dbc.insertData("INSERT INTO tbl_user(u_image) VALUES('" + destination + "')");
+      
+    try{
+          
+          
+    Files.copy(selectedFile.toPath(),new File (destination).toPath(), StandardCopyOption.REPLACE_EXISTING);
+        
+    } catch (IOException ex) {
+    System.out.println("Insert image error: " + ex.getMessage());
+
+   
+    }    
+    }//GEN-LAST:event_addActionPerformed
+
+    private void remove1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remove1ActionPerformed
+        // TODO add your handling code here:
+        image.setIcon(null);
+        destination = "";
+        path = "";
+    }//GEN-LAST:event_remove1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -217,7 +371,9 @@ public class cashierInfo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton add;
     private javax.swing.JLabel fname;
+    private javax.swing.JLabel image;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -228,6 +384,8 @@ public class cashierInfo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lasn3;
+    public javax.swing.JButton remove1;
+    public javax.swing.JButton select1;
     private javax.swing.JLabel uid;
     // End of variables declaration//GEN-END:variables
 }
