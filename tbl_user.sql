@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2025 at 08:13 PM
+-- Generation Time: Apr 23, 2025 at 04:43 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -54,7 +54,7 @@ INSERT INTO `tbl_user` (`u_id`, `u_fname`, `u_lname`, `u_occ`, `u_cn`, `u_em`, `
 (15, 'hahdsad', 'awdwd', 'Manager', '12345678914', 'asw@scc.com', 'daniel123', 'MdqJXf9VR1yPJMxQTqmyzuzrTa+ERrEqLBE5MNguv2w=', 'Active', ''),
 (19, 'delima', 'delima', 'Cashier', '12345678954', 'delima@scc.com', 'delima123', 'u1JPVA/SmxnFwFqDAIegkM0DiVHSAyUBpYUWHjdi/IY=', 'Pending', ''),
 (20, 'anton', 'alforque', 'Cashier', '01236547895', 'anton@scc.com', 'anton123', 'yx+bYoBmKSkN+xJwlgt9l1anASwwH1IabCOk27ozkQQ=', 'Active', ''),
-(21, 'daniel', 'john', 'Cashier', '02314569874', 'dandandan@gmail.com', 'dan', 'vux2J5X2kAOZI63XHbhEH9zwWhJCv1a4+28yGVYEsco=', 'Active', '');
+(21, 'daniel', 'john', 'Manager', '02314569874', 'dandandan@gmail.com', 'dan', 'vux2J5X2kAOZI63XHbhEH9zwWhJCv1a4+28yGVYEsco=', 'Active', 'src/userimages/006-manager.png');
 
 --
 -- Indexes for dumped tables

@@ -114,7 +114,7 @@ public class cashierDashBoard extends javax.swing.JFrame {
         
         
         
-     new cashierInfo().setVisible(true);
+     new NewJFrame().setVisible(true);
      this.setVisible(false);
     }//GEN-LAST:event_acc_nameMouseClicked
 

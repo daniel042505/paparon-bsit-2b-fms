@@ -128,7 +128,7 @@ public class Updatecashier extends javax.swing.JFrame {
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
-        new cashierInfo().setVisible(true);
+        new NewJFrame().setVisible(true);
         this.setVisible(false);
         this.dispose();
         

@@ -8,12 +8,24 @@ package cashier;
 import config.Session;
 import config.dbConnect;
 import config.passwordHasher;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import manager.ManageUsers;
 import paparon.LoginPage;
@@ -31,6 +43,66 @@ public class changePass extends javax.swing.JFrame {
         initComponents();
          this.setLocationRelativeTo(null); 
     }
+    
+     public String destination = "";
+    File selectedFile;
+    public String oldpath;
+    public String path; 
+    
+    public int FileExistenceChecker(String path){
+        File file = new File(path);
+        String fileName = file.getName();
+        
+        Path filePath = Paths.get("src/userimages", fileName);
+        boolean fileExists = Files.exists(filePath);
+        
+        if (fileExists) {
+            return 1;
+        } else {
+            return 0;
+        }
+    
+    }
+    
+          
+    public static int getHeightFromWidth(String imagePath, int desiredWidth) {
+        try {
+            // Read the image file
+            File imageFile = new File(imagePath);
+            BufferedImage image = ImageIO.read(imageFile);
+            
+            // Get the original width and height of the image
+            int originalWidth = image.getWidth();
+            int originalHeight = image.getHeight();
+            
+            // Calculate the new height based on the desired width and the aspect ratio
+            int newHeight = (int) ((double) desiredWidth / originalWidth * originalHeight);
+            
+            return newHeight;
+        } catch (IOException ex) {
+            System.out.println("No image found!");
+        }
+        
+        return -1;
+    }
+    
+    
+        public  ImageIcon ResizeImage(String ImagePath, byte[] pic, JLabel label) {
+    ImageIcon MyImage = null;
+        if(ImagePath !=null){
+            MyImage = new ImageIcon(ImagePath);
+        }else{
+            MyImage = new ImageIcon(pic);
+        }
+        
+        
+         int newHeight = getHeightFromWidth(ImagePath, label.getWidth());
+
+    Image img = MyImage.getImage();
+    Image newImg = img.getScaledInstance(label.getWidth(), newHeight, Image.SCALE_SMOOTH);
+    ImageIcon image = new ImageIcon(newImg);
+    return image;
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,8 +123,10 @@ public class changePass extends javax.swing.JFrame {
         Clear1 = new javax.swing.JButton();
         oldpass = new javax.swing.JTextField();
         firn1 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        acc_name = new javax.swing.JLabel();
+        remove1 = new javax.swing.JButton();
+        select1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        image = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -105,8 +179,8 @@ public class changePass extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
 
-        up.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        up.setText("Save");
+        up.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        up.setText("SAVE");
         up.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 upActionPerformed(evt);
@@ -114,8 +188,8 @@ public class changePass extends javax.swing.JFrame {
         });
         jPanel1.add(up, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 330, 90, 30));
 
-        Clear1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        Clear1.setText("Clear");
+        Clear1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        Clear1.setText("CLEAR");
         Clear1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Clear1ActionPerformed(evt);
@@ -138,17 +212,32 @@ public class changePass extends javax.swing.JFrame {
         firn1.setText("New Password:");
         jPanel1.add(firn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, 140, -1));
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/009-clerk1.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 190));
+        remove1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        remove1.setText("REMOVE");
+        remove1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                remove1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(remove1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, 100, 30));
 
-        acc_name.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        acc_name.setForeground(new java.awt.Color(240, 240, 240));
-        acc_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        acc_name.setText("0");
-        jPanel1.add(acc_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 180, 40));
+        select1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        select1.setText("SELECT");
+        select1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                select1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(select1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 90, 30));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/nm.jpg"))); // NOI18N
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        image.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel2.add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 6, 190, 270));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 200, 280));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/saw.jpg"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 390));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 400));
@@ -197,19 +286,26 @@ public class changePass extends javax.swing.JFrame {
 
                 String npass = passwordHasher.hashPassword(newpass.getText());
                 dbc.UpdateData("UPDATE tbl_user SET u_pass = '" + npass + "' WHERE u_id = '" + sess.getUid() + "'");
-
-                JOptionPane.showMessageDialog(null, "Successfully Updated!");
-                new LoginPage().setVisible(true);
-                this.setVisible(false);
-            } else {
-                JOptionPane.showMessageDialog(null, "Old Password is Incorrect!");
+                
+                 if (selectedFile != null) {
+                dbc.insertData("UPDATE tbl_user SET u_image = '" + destination + "' WHERE u_id = '" + sess.getUid() + "'");
+                try {
+                    Files.copy(selectedFile.toPath(), new File(destination).toPath(), StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException ex) {
+                    System.out.println("Insert image error: " + ex.getMessage());
+                }
             }
+
+            JOptionPane.showMessageDialog(null, "Successfully Updated!");
+            new LoginPage().setVisible(true);
+            this.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(null, "Old Password is Incorrect!");
         }
-    } catch (SQLException | NoSuchAlgorithmException ex) {
-        System.out.println("" + ex);
     }
-
-
+} catch (SQLException | NoSuchAlgorithmException ex) {
+    System.out.println("" + ex);
+}
     }//GEN-LAST:event_upActionPerformed
 
     private void Clear1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Clear1ActionPerformed
@@ -228,19 +324,35 @@ public class changePass extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
         
+                                        
+    try {
+        dbConnect dbc = new dbConnect();
         Session sess = Session.getInstance();
-        
-         if(sess.getUid() == 0){    
-       
-       JOptionPane.showMessageDialog(null,"No Account, Login First" );
-       
-       new LoginPage().setVisible(true);
-       this.setVisible(false);
-       this.dispose();
 
-         }
-       acc_name.setText(""+sess.getFname());
-      
+        String query = "SELECT u_image FROM tbl_user WHERE u_id = '" + sess.getUid() + "'";
+        ResultSet rs = dbc.getData(query);
+
+        if (rs.next()) {
+            String imgPath = rs.getString("u_image");
+            if (imgPath != null && !imgPath.trim().isEmpty()) {
+                File imageFile = new File(imgPath);
+                if (imageFile.exists()) {
+                    image.setIcon(ResizeImage(imgPath, null, image));
+                    destination = imgPath;
+                } else {
+                    System.out.println("Image file not found at: " + imgPath);
+                }
+            }
+        }
+    } catch (SQLException ex) {
+        System.out.println("Image load error: " + ex.getMessage());
+    }
+
+
+        
+        
+        
+       
        
         
         
@@ -252,10 +364,42 @@ public class changePass extends javax.swing.JFrame {
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
-         new cashierInfo().setVisible(true);
+         new NewJFrame().setVisible(true);
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void remove1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remove1ActionPerformed
+        // TODO add your handling code here:
+        image.setIcon(null);
+        destination = "";
+        path = "";
+    }//GEN-LAST:event_remove1ActionPerformed
+
+    private void select1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select1ActionPerformed
+        // TODO add your handling code here:
+
+        JFileChooser fileChooser = new JFileChooser();
+        int returnValue = fileChooser.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            try {
+                selectedFile = fileChooser.getSelectedFile();
+                destination = "src/userimages/" + selectedFile.getName();
+                path  = selectedFile.getAbsolutePath();
+
+                if(FileExistenceChecker(path) == 1){
+                    JOptionPane.showMessageDialog(null, "File Already Exist, Rename or Choose another!");
+                    destination = "";
+                    path="";
+                }else{
+                    image.setIcon(ResizeImage(path, null, image));
+
+                }
+            } catch (Exception ex) {
+                System.out.println("File Error!");
+            }
+        }
+    }//GEN-LAST:event_select1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,17 +439,19 @@ public class changePass extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Clear1;
-    private javax.swing.JLabel acc_name;
     public javax.swing.JTextField cpass;
     private javax.swing.JLabel firn;
     private javax.swing.JLabel firn1;
-    private javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel image;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lasn;
     public javax.swing.JTextField newpass;
     public javax.swing.JTextField oldpass;
+    public javax.swing.JButton remove1;
+    public javax.swing.JButton select1;
     public javax.swing.JButton up;
     // End of variables declaration//GEN-END:variables
 }
