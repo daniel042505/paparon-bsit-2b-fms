@@ -88,7 +88,7 @@ public class ForgotPassword extends javax.swing.JFrame {
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 290, 40));
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton1.setText("SUBMIT");
+        jButton1.setText("NEXT");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -136,8 +136,8 @@ public class ForgotPassword extends javax.swing.JFrame {
 
             if (rs.next()) {
                 // The answer is correct.  Now, open the ResetPassword frame, passing the email
-                ResetPassword resetPasswordFrame = new ResetPassword(userEmail);
-                resetPasswordFrame.setVisible(true);
+                ResetPassword rp = new ResetPassword(userEmail);
+                rp.setVisible(true);
                 this.dispose();
 
             } else {

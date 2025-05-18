@@ -43,21 +43,21 @@ public class dbConnect {
             return result;
         }
         //Function to UpdateData
-        public void UpdateData(String sql){
-        try{
-        PreparedStatement pst = connect.prepareStatement(sql);
-        int rowsUpdated = pst.executeUpdate();
-        if(rowsUpdated > 0){
-      
-        }else{
-            System.out.println("Data Update Failed!");
-            
+       public boolean UpdateData(String sql, String... params) {
+        try {
+            PreparedStatement pst = connect.prepareStatement(sql);
+            // Set parameters
+            for (int i = 0; i < params.length; i++) {
+                pst.setString(i + 1, params[i]);
+            }
+            int rowsUpdated = pst.executeUpdate();
+            pst.close();
+            return rowsUpdated > 0; // Return boolean indicating success
+        } catch (SQLException ex) {
+            System.out.println("Connection Error: " + ex);
+            return false; // Return false on error
         }
-         pst.close();
-        }catch(SQLException ex){
-            System.out.println("Connection Error"+ex);
-        }
-        }
+    }
     
         //Function to retrieve data
         public ResultSet getData(String sql) throws SQLException{

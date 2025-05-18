@@ -5,22 +5,43 @@
  */
 package paparon;
 
+import config.Session;
+import config.dbConnect;
+import config.passwordHasher;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author PC
  */
 public class ResetPassword extends javax.swing.JFrame {
-
+           private String userEmail;
     /**
      * Creates new form ResetPassword
      */
-    public ResetPassword() {
+           
+           public ResetPassword() { 
+           initComponents();
+           this.setLocationRelativeTo(null); 
+           this.setResizable(false);
+           
+    }
+    public ResetPassword(String userEmail) {
         initComponents();
+        this.userEmail = userEmail;
     }
 
-    ResetPassword(String userEmail) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,22 +52,93 @@ public class ResetPassword extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        pass = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        pass1 = new javax.swing.JTextField();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("RESET PASSWORD");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-4, -2, 530, 50));
+
+        pass.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        pass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPanel1.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 290, 50));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/029-account-recovery.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 140, 110));
+
+        jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButton1.setText("SUBMIT");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, 130, 40));
+
+        pass1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        pass1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPanel1.add(pass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 290, 50));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 370));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+      
+        
+ try {
+            dbConnect dbc = new dbConnect();
+            Session sess = Session.getInstance();
+
+
+            String newPassword = pass1.getText(); 
+            String confirmNewPassword = pass.getText(); 
+
+            if (!newPassword.equals(confirmNewPassword)) {
+                JOptionPane.showMessageDialog(this, "New Password and Confirm Password do not match!");
+                return;
+            }
+
+            if (newPassword.length() < 8) {
+                JOptionPane.showMessageDialog(this, "New Password must be at least 8 characters long!");
+                return;
+            }
+
+
+            String npass = passwordHasher.hashPassword(newPassword);
+            String updateQuery = "UPDATE tbl_user SET u_pass = ? WHERE u_id = ?";
+            PreparedStatement updatePst = dbc.getConnection().prepareStatement(updateQuery);
+            updatePst.setString(1, npass);
+            updatePst.setInt(2, sess.getUid());
+            updatePst.executeUpdate();
+            updatePst.close();
+
+            JOptionPane.showMessageDialog(this, "Successfully Updated!");
+            new LoginPage().setVisible(true);
+            this.setVisible(false);
+
+        } catch (SQLException | NoSuchAlgorithmException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+            ex.printStackTrace(); // Important for debugging
+        } 
+    
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -84,5 +176,11 @@ public class ResetPassword extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField pass;
+    private javax.swing.JTextField pass1;
     // End of variables declaration//GEN-END:variables
 }
