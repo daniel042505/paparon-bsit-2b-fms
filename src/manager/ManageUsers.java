@@ -37,8 +37,8 @@ public class ManageUsers extends javax.swing.JFrame {
         
     }
     
-    Color navcolor = new Color(102,0,102);
-        Color hovercolor = new Color(153,0,255);
+    Color navcolor = new Color(0,153,153);
+        Color hovercolor = new Color(0,153,153);
 
     
    public void displayData(){
