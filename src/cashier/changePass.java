@@ -141,7 +141,7 @@ public class changePass extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         firn.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        firn.setForeground(new java.awt.Color(0, 255, 255));
+        firn.setForeground(new java.awt.Color(240, 240, 240));
         firn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         firn.setText("Old Password:");
         jPanel1.add(firn, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, 130, 20));
@@ -156,7 +156,7 @@ public class changePass extends javax.swing.JFrame {
         jPanel1.add(newpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, 180, 30));
 
         lasn.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lasn.setForeground(new java.awt.Color(0, 255, 255));
+        lasn.setForeground(new java.awt.Color(240, 240, 240));
         lasn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lasn.setText("Confirm Password:");
         jPanel1.add(lasn, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 170, 20));
@@ -207,7 +207,7 @@ public class changePass extends javax.swing.JFrame {
         jPanel1.add(oldpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, 180, 30));
 
         firn1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        firn1.setForeground(new java.awt.Color(0, 255, 255));
+        firn1.setForeground(new java.awt.Color(240, 240, 240));
         firn1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         firn1.setText("New Password:");
         jPanel1.add(firn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, 140, -1));

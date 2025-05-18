@@ -60,13 +60,13 @@ public class Updatecashier extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         firn1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        firn1.setForeground(new java.awt.Color(0, 255, 255));
+        firn1.setForeground(new java.awt.Color(240, 240, 240));
         firn1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         firn1.setText("Contact Number");
         getContentPane().add(firn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, 150, 40));
 
         password.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
-        password.setForeground(new java.awt.Color(0, 255, 255));
+        password.setForeground(new java.awt.Color(240, 240, 240));
         password.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         password.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/018-password-1.png"))); // NOI18N
         password.setText("Change Password");
@@ -78,14 +78,14 @@ public class Updatecashier extends javax.swing.JFrame {
         getContentPane().add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, 230, 50));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(240, 240, 240));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("UPDATE ACCOUNT");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 60));
         getContentPane().add(cn, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 280, 40));
 
         firn4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        firn4.setForeground(new java.awt.Color(0, 255, 255));
+        firn4.setForeground(new java.awt.Color(240, 240, 240));
         firn4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         firn4.setText("First name");
         getContentPane().add(firn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 100, 40));
@@ -94,7 +94,7 @@ public class Updatecashier extends javax.swing.JFrame {
         getContentPane().add(fname, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 280, 40));
 
         firn5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        firn5.setForeground(new java.awt.Color(0, 255, 255));
+        firn5.setForeground(new java.awt.Color(240, 240, 240));
         firn5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         firn5.setText("Last name");
         getContentPane().add(firn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 100, 40));

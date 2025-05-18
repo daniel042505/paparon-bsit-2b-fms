@@ -101,6 +101,7 @@ public class LoginPage extends javax.swing.JFrame {
         register = new javax.swing.JLabel();
         Clear = new javax.swing.JButton();
         Login1 = new javax.swing.JButton();
+        forgotpass = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -124,7 +125,6 @@ public class LoginPage extends javax.swing.JFrame {
         });
         getContentPane().add(cross, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, 40, -1));
 
-        jPanel1.setBackground(new java.awt.Color(153, 0, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -187,7 +187,7 @@ public class LoginPage extends javax.swing.JFrame {
                 registerMouseClicked(evt);
             }
         });
-        jPanel1.add(register, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 320, 20));
+        jPanel1.add(register, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 320, 20));
 
         Clear.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         Clear.setText("Clear");
@@ -207,6 +207,16 @@ public class LoginPage extends javax.swing.JFrame {
         });
         jPanel1.add(Login1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 90, 30));
 
+        forgotpass.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        forgotpass.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        forgotpass.setText("Forgot Password? Click Here");
+        forgotpass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                forgotpassMouseClicked(evt);
+            }
+        });
+        jPanel1.add(forgotpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 320, 20));
+
         jLabel7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Login Form");
@@ -215,7 +225,7 @@ public class LoginPage extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 320, 290));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel6.setForeground(new java.awt.Color(240, 240, 240));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Food Management System");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 320, 40));
@@ -361,6 +371,13 @@ else if (pass.getPassword().length < 8) {
 
         
     }//GEN-LAST:event_crossMouseClicked
+
+    private void forgotpassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forgotpassMouseClicked
+        // TODO add your handling code here:
+        
+        new UserSecurity().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_forgotpassMouseClicked
     
       
       
@@ -403,6 +420,7 @@ else if (pass.getPassword().length < 8) {
     private javax.swing.JButton Clear;
     private javax.swing.JButton Login1;
     private javax.swing.JLabel cross;
+    private javax.swing.JLabel forgotpass;
     private javax.swing.JLabel hide;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;

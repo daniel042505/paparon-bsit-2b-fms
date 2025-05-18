@@ -68,8 +68,6 @@ public class createUserForm extends javax.swing.JFrame {
         u_id = new javax.swing.JTextField();
         firn1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        image = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -222,7 +220,7 @@ stt.addActionListener(new java.awt.event.ActionListener() {
             addActionPerformed(evt);
         }
     });
-    jPanel1.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 90, 30));
+    jPanel1.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 90, 30));
 
     up.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
     up.setText("Update");
@@ -232,7 +230,7 @@ stt.addActionListener(new java.awt.event.ActionListener() {
             upActionPerformed(evt);
         }
     });
-    jPanel1.add(up, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 90, 30));
+    jPanel1.add(up, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 90, 30));
 
     Clear1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
     Clear1.setText("Clear");
@@ -241,7 +239,7 @@ stt.addActionListener(new java.awt.event.ActionListener() {
             Clear1ActionPerformed(evt);
         }
     });
-    jPanel1.add(Clear1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 90, 30));
+    jPanel1.add(Clear1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 90, 30));
 
     u_id.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     u_id.setEnabled(false);
@@ -266,13 +264,6 @@ stt.addActionListener(new java.awt.event.ActionListener() {
         }
     });
     jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 40));
-
-    jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-    image.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    jPanel2.add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 230));
-
-    jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 180, 230));
 
     jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/nm.jpg"))); // NOI18N
@@ -630,11 +621,9 @@ else {
     private javax.swing.JLabel firn;
     private javax.swing.JLabel firn1;
     private javax.swing.JLabel hide;
-    private javax.swing.JLabel image;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     public javax.swing.JTextField lan;
     private javax.swing.JLabel lasn;
     public javax.swing.JComboBox<String> occ;

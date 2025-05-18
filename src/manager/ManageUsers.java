@@ -124,7 +124,7 @@ public class ManageUsers extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 500, 470));
 
-        jPanel2.setBackground(new java.awt.Color(102, 0, 102));
+        jPanel2.setBackground(new java.awt.Color(0, 153, 153));
         jPanel2.setLayout(null);
 
         fname.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -139,13 +139,14 @@ public class ManageUsers extends javax.swing.JFrame {
         jPanel2.add(jLabel3);
         jLabel3.setBounds(0, 0, 250, 110);
 
+        c_un1.setBackground(new java.awt.Color(0, 153, 153));
         c_un1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         c_un1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         c_un1.setText("Current User:");
         jPanel2.add(c_un1);
         c_un1.setBounds(0, 370, 260, 50);
 
-        p_add.setBackground(new java.awt.Color(102, 0, 102));
+        p_add.setBackground(new java.awt.Color(0, 153, 153));
         p_add.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 p_addMouseEntered(evt);
@@ -175,7 +176,7 @@ public class ManageUsers extends javax.swing.JFrame {
         jPanel2.add(c_un);
         c_un.setBounds(0, 110, 260, 50);
 
-        p_add1.setBackground(new java.awt.Color(102, 0, 102));
+        p_add1.setBackground(new java.awt.Color(0, 153, 153));
         p_add1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 p_add1MouseEntered(evt);
@@ -200,7 +201,7 @@ public class ManageUsers extends javax.swing.JFrame {
         jPanel2.add(p_add1);
         p_add1.setBounds(0, 210, 260, 50);
 
-        p_add2.setBackground(new java.awt.Color(102, 0, 102));
+        p_add2.setBackground(new java.awt.Color(0, 153, 153));
         p_add2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 p_add2MouseEntered(evt);
@@ -225,7 +226,7 @@ public class ManageUsers extends javax.swing.JFrame {
         jPanel2.add(p_add2);
         p_add2.setBounds(0, 320, 260, 60);
 
-        p_add3.setBackground(new java.awt.Color(102, 0, 102));
+        p_add3.setBackground(new java.awt.Color(0, 153, 153));
         p_add3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 p_add3MouseEntered(evt);
@@ -252,7 +253,8 @@ public class ManageUsers extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 260, 470));
 
-        jPanel3.setBackground(new java.awt.Color(255, 153, 255));
+        jPanel3.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel3.setForeground(new java.awt.Color(0, 102, 102));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N

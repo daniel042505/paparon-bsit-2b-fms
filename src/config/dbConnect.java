@@ -134,6 +134,15 @@ public class dbConnect {
         }
         return success;
     }
+     public void closeConnection(Connection con) {
+        try {
+            if (con != null && !con.isClosed()) {
+                con.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Or handle the error appropriately
+        }
+}
 }
 
 
