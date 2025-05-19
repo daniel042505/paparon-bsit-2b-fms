@@ -123,6 +123,8 @@ public class DrinksMenu extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel7.setText("20.00");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 123, -1, -1));
+
+        jSpinner1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jPanel2.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 144, 46, -1));
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -155,6 +157,8 @@ public class DrinksMenu extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel13.setText("20.00");
         jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 123, -1, -1));
+
+        jSpinner2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jPanel3.add(jSpinner2, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 144, 46, -1));
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -187,6 +191,8 @@ public class DrinksMenu extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel19.setText("20.00");
         jPanel4.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 123, -1, -1));
+
+        jSpinner3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jPanel4.add(jSpinner3, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 144, 46, -1));
 
         jLabel20.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -219,6 +225,8 @@ public class DrinksMenu extends javax.swing.JFrame {
         jLabel25.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel25.setText("30.00");
         jPanel5.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 123, -1, -1));
+
+        jSpinner4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jPanel5.add(jSpinner4, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 144, 46, -1));
 
         jLabel26.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -251,6 +259,8 @@ public class DrinksMenu extends javax.swing.JFrame {
         jLabel37.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel37.setText("40.00");
         jPanel7.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 123, -1, -1));
+
+        jSpinner6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jPanel7.add(jSpinner6, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 144, 46, -1));
 
         jLabel38.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -283,6 +293,8 @@ public class DrinksMenu extends javax.swing.JFrame {
         jLabel49.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel49.setText("15.00");
         jPanel9.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 123, -1, -1));
+
+        jSpinner8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jPanel9.add(jSpinner8, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 144, 46, -1));
 
         jLabel50.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N

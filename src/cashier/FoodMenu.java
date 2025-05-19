@@ -5,17 +5,69 @@
  */
 package cashier;
 
+import javax.swing.JOptionPane;
+import cashier.Receipt;
+import config.dbConnect;
+import java.awt.print.PrinterException;
+import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import paparon.LoginPage;
+
 /**
  *
  * @author PC
  */
 public class FoodMenu extends javax.swing.JFrame {
 
+    
+    double total=0.0;
+    private int x =0;
+    
     /**
+     * 
      * Creates new form FoodMenu
      */
     public FoodMenu() {
         initComponents();
+        setTime();
+        
+    }
+    
+    public boolean qtyisZero(int qty){
+        
+    if(qty==0){
+     JOptionPane.showMessageDialog(null, "Please increase value");   
+     return false;
+    }
+    return true;
+    }
+    
+    public void Reset(){
+    jSpinner1.setValue(0);
+    jSpinner2.setValue(0);
+    jSpinner3.setValue(0);
+    jSpinner4.setValue(0);
+    jSpinner5.setValue(0);
+    jSpinner6.setValue(0);
+    jSpinner7.setValue(0);
+    jSpinner8.setValue(0);
+    jTextArea1.setText("");
+    jCheckBox1.setSelected(false);
+    jCheckBox2 .setSelected(false);
+    jCheckBox3.setSelected(false);
+    jCheckBox4.setSelected(false);
+    jCheckBox5.setSelected(false);
+    jCheckBox6.setSelected(false);
+    jCheckBox7.setSelected(false);
+    jCheckBox8.setSelected(false);
+        
+        
     }
 
     /**
@@ -109,8 +161,14 @@ public class FoodMenu extends javax.swing.JFrame {
         jSpinner8 = new javax.swing.JSpinner();
         jLabel50 = new javax.swing.JLabel();
         jCheckBox8 = new javax.swing.JCheckBox();
-        Pay = new javax.swing.JButton();
-        Pay1 = new javax.swing.JButton();
+        total1 = new javax.swing.JButton();
+        Receipt = new javax.swing.JButton();
+        Reset = new javax.swing.JButton();
+        jPanel10 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        Time = new javax.swing.JLabel();
+        Date1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -146,13 +204,22 @@ public class FoodMenu extends javax.swing.JFrame {
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 102, 59, -1));
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel7.setText("25.00");
+        jLabel7.setText("25.0");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 123, -1, -1));
+
+        jSpinner1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 1));
         jPanel2.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 144, 46, -1));
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel8.setText("Purchase:");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 175, -1, -1));
+
+        jCheckBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCheckBox1MouseClicked(evt);
+            }
+        });
         jPanel2.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 175, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 150, 210));
@@ -181,13 +248,22 @@ public class FoodMenu extends javax.swing.JFrame {
         jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 102, 59, -1));
 
         jLabel13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel13.setText("20.00");
+        jLabel13.setText("20.0");
         jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 123, -1, -1));
+
+        jSpinner2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 1));
         jPanel3.add(jSpinner2, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 144, 46, -1));
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel14.setText("Purchase:");
         jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 175, -1, -1));
+
+        jCheckBox2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCheckBox2MouseClicked(evt);
+            }
+        });
         jPanel3.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 175, -1, -1));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, -1, 210));
@@ -216,13 +292,22 @@ public class FoodMenu extends javax.swing.JFrame {
         jPanel4.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 102, -1, -1));
 
         jLabel19.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel19.setText("35.00");
+        jLabel19.setText("35.0");
         jPanel4.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 123, -1, -1));
+
+        jSpinner3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jSpinner3.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 1));
         jPanel4.add(jSpinner3, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 144, 46, -1));
 
         jLabel20.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel20.setText("Purchase:");
         jPanel4.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 175, -1, -1));
+
+        jCheckBox3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCheckBox3MouseClicked(evt);
+            }
+        });
         jPanel4.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 175, -1, -1));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, -1, 210));
@@ -251,13 +336,22 @@ public class FoodMenu extends javax.swing.JFrame {
         jPanel5.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, 20));
 
         jLabel25.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel25.setText("20.00");
+        jLabel25.setText("35.0");
         jPanel5.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 123, -1, -1));
+
+        jSpinner4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jSpinner4.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 1));
         jPanel5.add(jSpinner4, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 144, 46, -1));
 
         jLabel26.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel26.setText("Purchase:");
         jPanel5.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 175, -1, -1));
+
+        jCheckBox4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCheckBox4MouseClicked(evt);
+            }
+        });
         jPanel5.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 175, -1, -1));
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, -1, 210));
@@ -286,13 +380,22 @@ public class FoodMenu extends javax.swing.JFrame {
         jPanel6.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 102, 59, -1));
 
         jLabel31.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel31.setText("20.00");
+        jLabel31.setText("20.0");
         jPanel6.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 123, -1, -1));
+
+        jSpinner5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jSpinner5.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 1));
         jPanel6.add(jSpinner5, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 144, 46, -1));
 
         jLabel32.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel32.setText("Purchase:");
         jPanel6.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 175, -1, -1));
+
+        jCheckBox5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCheckBox5MouseClicked(evt);
+            }
+        });
         jPanel6.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 175, -1, -1));
 
         jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 290, 160, 210));
@@ -321,13 +424,22 @@ public class FoodMenu extends javax.swing.JFrame {
         jPanel7.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 102, 59, -1));
 
         jLabel37.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel37.setText("40.00");
+        jLabel37.setText("40.0");
         jPanel7.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 123, -1, -1));
+
+        jSpinner6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jSpinner6.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 1));
         jPanel7.add(jSpinner6, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 144, 46, -1));
 
         jLabel38.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel38.setText("Purchase:");
         jPanel7.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 175, -1, -1));
+
+        jCheckBox6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCheckBox6MouseClicked(evt);
+            }
+        });
         jPanel7.add(jCheckBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 175, -1, -1));
 
         jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 150, 210));
@@ -356,13 +468,22 @@ public class FoodMenu extends javax.swing.JFrame {
         jPanel8.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 102, 59, -1));
 
         jLabel43.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel43.setText("30.00");
+        jLabel43.setText("30.0");
         jPanel8.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 123, -1, -1));
+
+        jSpinner7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jSpinner7.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 1));
         jPanel8.add(jSpinner7, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 144, 46, -1));
 
         jLabel44.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel44.setText("Purchase:");
         jPanel8.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 175, -1, -1));
+
+        jCheckBox7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCheckBox7MouseClicked(evt);
+            }
+        });
         jPanel8.add(jCheckBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 175, -1, -1));
 
         jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 160, 210));
@@ -391,30 +512,339 @@ public class FoodMenu extends javax.swing.JFrame {
         jPanel9.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 102, 59, -1));
 
         jLabel49.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel49.setText("50.00");
+        jLabel49.setText("50.0");
         jPanel9.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 123, -1, -1));
+
+        jSpinner8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jSpinner8.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 1));
         jPanel9.add(jSpinner8, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 144, 46, -1));
 
         jLabel50.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel50.setText("Purchase:");
         jPanel9.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 175, -1, -1));
+
+        jCheckBox8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCheckBox8MouseClicked(evt);
+            }
+        });
         jPanel9.add(jCheckBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 175, -1, -1));
 
         jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, 160, 210));
 
-        Pay.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        Pay.setText("Pay");
-        jPanel1.add(Pay, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 520, 130, 40));
+        total1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        total1.setText("Total");
+        total1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                total1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(total1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 520, 130, 40));
 
-        Pay1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        Pay1.setText("Drinks");
-        jPanel1.add(Pay1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 520, 130, 40));
+        Receipt.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        Receipt.setText("Receipt");
+        Receipt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReceiptActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Receipt, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 520, 130, 40));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 580));
+        Reset.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        Reset.setText("Reset");
+        Reset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ResetActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 520, 130, 40));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 580));
+
+        jPanel10.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jPanel10.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 310, 490));
+
+        getContentPane().add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 60, 330, 590));
+
+        Time.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        getContentPane().add(Time, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 10, 120, 40));
+        getContentPane().add(Date1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 10, 160, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetActionPerformed
+        // TODO add your handling code here:
+        Reset();
+    }//GEN-LAST:event_ResetActionPerformed
+
+     public void fms(){
+      jTextArea1.setText("**************Food Management System**************\n"
+                + "Time:" + Time.getText() + " Date :" + Date1.getText() + "\n"
+                + "**********************************************************\n"
+                + "Item Name\t\t\tPrice\n"); 
+    }
+    
+    private void jCheckBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox1MouseClicked
+        // TODO add your handling code here:
+        int qty = Integer.parseInt(jSpinner1.getValue().toString());
+        if(qtyisZero(qty) && jCheckBox1.isSelected() ){
+            x++;
+            if(x==1){
+            fms();
+            }
+            double price = qty*25.0;
+            jTextArea1.setText(jTextArea1.getText()+x+". "+jLabel6.getText()+"\t\t\t"+price+"\n");
+        }else{
+            jCheckBox1.setSelected(false);
+            
+            
+        }
+    }//GEN-LAST:event_jCheckBox1MouseClicked
+
+    private void jCheckBox2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox2MouseClicked
+        // TODO add your handling code here:
+          int qty = Integer.parseInt(jSpinner2.getValue().toString());
+        if(qtyisZero(qty) && jCheckBox2.isSelected() ){
+            x++;
+            if(x==1){
+            fms();
+            }
+            double price = qty*20.0;
+            jTextArea1.setText(jTextArea1.getText()+x+". "+jLabel12.getText()+"\t\t\t"+price+"\n");
+        }else{
+            jCheckBox2.setSelected(false);
+            
+            
+        }
+    }//GEN-LAST:event_jCheckBox2MouseClicked
+
+    private void jCheckBox3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox3MouseClicked
+        // TODO add your handling code here:
+         int qty = Integer.parseInt(jSpinner3.getValue().toString());
+        if(qtyisZero(qty) && jCheckBox3.isSelected() ){
+            x++;
+            if(x==1){
+            fms();
+            }
+            double price = qty*35.0;
+            jTextArea1.setText(jTextArea1.getText()+x+". "+jLabel18.getText()+"\t\t\t"+price+"\n");
+        }else{
+            jCheckBox3.setSelected(false);
+            
+            
+        }
+    }//GEN-LAST:event_jCheckBox3MouseClicked
+
+    private void jCheckBox4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox4MouseClicked
+        // TODO add your handling code here:
+          int qty = Integer.parseInt(jSpinner4.getValue().toString());
+        if(qtyisZero(qty) && jCheckBox4.isSelected() ){
+            x++;
+            if(x==1){
+            fms();
+            }
+            double price = qty*35.0;
+            jTextArea1.setText(jTextArea1.getText()+x+". "+jLabel24.getText()+"\t\t\t"+price+"\n");
+        }else{
+            jCheckBox4.setSelected(false);
+            
+            
+        }
+    }//GEN-LAST:event_jCheckBox4MouseClicked
+
+    private void jCheckBox6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox6MouseClicked
+        // TODO add your handling code here:
+          int qty = Integer.parseInt(jSpinner6.getValue().toString());
+        if(qtyisZero(qty) && jCheckBox6.isSelected() ){
+            x++;
+            if(x==1){
+            fms();
+            }
+            double price = qty*40.0;
+            jTextArea1.setText(jTextArea1.getText()+x+". "+jLabel36.getText()+"\t\t\t"+price+"\n");
+        }else{
+            jCheckBox6.setSelected(false);
+            
+            
+        }
+    }//GEN-LAST:event_jCheckBox6MouseClicked
+
+    private void jCheckBox7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox7MouseClicked
+        // TODO add your handling code here:
+          int qty = Integer.parseInt(jSpinner7.getValue().toString());
+        if(qtyisZero(qty) && jCheckBox7.isSelected() ){
+            x++;
+            if(x==1){
+            fms();
+            }
+            double price = qty*30.0;
+            jTextArea1.setText(jTextArea1.getText()+x+". "+jLabel42.getText()+"\t\t\t"+price+"\n");
+        }else{
+            jCheckBox7.setSelected(false);
+            
+            
+        }
+    }//GEN-LAST:event_jCheckBox7MouseClicked
+
+    private void jCheckBox8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox8MouseClicked
+        // TODO add your handling code here:
+          int qty = Integer.parseInt(jSpinner8.getValue().toString());
+        if(qtyisZero(qty) && jCheckBox8.isSelected() ){
+            x++;
+            if(x==1){
+            fms();
+            }
+            double price = qty*50.0;
+            jTextArea1.setText(jTextArea1.getText()+x+". "+jLabel48.getText()+"\t\t\t"+price+"\n");
+        }else{
+            jCheckBox8.setSelected(false);
+            
+            
+        }
+    }//GEN-LAST:event_jCheckBox8MouseClicked
+
+    private void jCheckBox5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox5MouseClicked
+        // TODO add your handling code here:
+          int qty = Integer.parseInt(jSpinner5.getValue().toString());
+        if(qtyisZero(qty) && jCheckBox5.isSelected() ){
+            x++;
+            if(x==1){
+            fms();
+            }
+            double price = qty*20.0;
+            jTextArea1.setText(jTextArea1.getText()+x+". "+jLabel30.getText()+"\t\t\t"+price+"\n");
+        }else{
+            jCheckBox5.setSelected(false);
+            
+            
+        }
+    }//GEN-LAST:event_jCheckBox5MouseClicked
+
+    private void total1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_total1ActionPerformed
+        // TODO add your handling code here:
+         total = 0.0;
+
+    if (jCheckBox1.isSelected() && (int) jSpinner1.getValue() > 0) {
+        total += (int) jSpinner1.getValue() * 25.0;
+    }
+    if (jCheckBox2.isSelected() && (int) jSpinner2.getValue() > 0) {
+        total += (int) jSpinner2.getValue() * 20.0;
+    }
+    if (jCheckBox3.isSelected() && (int) jSpinner3.getValue() > 0) {
+        total += (int) jSpinner3.getValue() * 35.0;
+    }
+    if (jCheckBox4.isSelected() && (int) jSpinner4.getValue() > 0) {
+        total += (int) jSpinner4.getValue() * 20.0;
+    }
+    if (jCheckBox6.isSelected() && (int) jSpinner6.getValue() > 0) {
+        total += (int) jSpinner6.getValue() * 40.0;
+    }
+    if (jCheckBox7.isSelected() && (int) jSpinner7.getValue() > 0) {
+        total += (int) jSpinner7.getValue() * 30.0;
+    }
+    if (jCheckBox8.isSelected() && (int) jSpinner8.getValue() > 0) {
+        total += (int) jSpinner8.getValue() * 50.0;
+    }
+    if (jCheckBox5.isSelected() && (int) jSpinner5.getValue() > 0) {
+        total += (int) jSpinner5.getValue() * 20.0;
+    }
+
+    jTextArea1.append("-------------------------------------------------------------------\n");
+    jTextArea1.append("Total:\t\t\t" + String.format("%.1f", total) + "\n");
+   
+      dbConnect dbc = new dbConnect();
+        Connection con = null;
+        PreparedStatement pstmt = null;
+
+        String insertQuery = "INSERT INTO tbl_orders(burger_qty, fries_qty, burgersteak_qty, chicken_qty, hotdog_qty, taco_qty, pizza_qty, icecream_qty)"
+                + " VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+        try {
+            con = dbc.getConnection();
+            pstmt = con.prepareStatement(insertQuery);
+            pstmt.setInt(1, jCheckBox1.isSelected() ? Integer.parseInt(jSpinner1.getValue().toString()) : 0);
+            pstmt.setInt(2, jCheckBox2.isSelected() ? Integer.parseInt(jSpinner2.getValue().toString()) : 0);
+            pstmt.setInt(3, jCheckBox3.isSelected() ? Integer.parseInt(jSpinner3.getValue().toString()) : 0);
+            pstmt.setInt(4, jCheckBox4.isSelected() ? Integer.parseInt(jSpinner4.getValue().toString()) : 0);
+            pstmt.setInt(5, jCheckBox6.isSelected() ? Integer.parseInt(jSpinner6.getValue().toString()) : 0);
+            pstmt.setInt(6, jCheckBox7.isSelected() ? Integer.parseInt(jSpinner7.getValue().toString()) : 0);
+            pstmt.setInt(7, jCheckBox8.isSelected() ? Integer.parseInt(jSpinner8.getValue().toString()) : 0);
+            pstmt.setInt(8, jCheckBox5.isSelected() ? Integer.parseInt(jSpinner5.getValue().toString()) : 0);
+
+            int rowsInserted = pstmt.executeUpdate();
+            if (rowsInserted > 0) {
+                JOptionPane.showMessageDialog(this, "Order details saved to database!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Failed to save order details.");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(FoodMenu.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Database error: " + ex.getMessage());
+        } finally {
+            try {
+                if (pstmt != null) pstmt.close();
+                if (con != null) dbc.closeConnection(con);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    
+
+  
+
+    
+   
+        
+      
+    }//GEN-LAST:event_total1ActionPerformed
+
+    
+    private void ReceiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReceiptActionPerformed
+        // TODO add your handling code here:
+        if(total != 0){
+            
+            try {
+                jTextArea1.print();
+            } catch (PrinterException ex) {
+                Logger.getLogger(FoodMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "You haven't purchased any product");
+        }
+    }//GEN-LAST:event_ReceiptActionPerformed
+
+    
+   
+    
+    public void setTime(){
+        new Thread(new Runnable(){
+          @Override
+          public void run(){
+          while(true){
+             
+              try {
+                  Thread.sleep(1000);
+              } catch (InterruptedException ex) {
+                  Logger.getLogger(FoodMenu.class.getName()).log(Level.SEVERE, null, ex);
+              }
+              Date date = new Date();
+              SimpleDateFormat tf = new SimpleDateFormat("h:mm:ss aa");
+              SimpleDateFormat df = new SimpleDateFormat("EEEE, dd-MM-yyyy");
+              String time = tf.format(date);
+              Time.setText(time.split(" ")[0]+" "+time.split(" ")[1]);
+              Date1.setText(df.format (date));
+          }
+          }
+        }).start();
+    }
     /**
      * @param args the command line arguments
      */
@@ -454,13 +884,15 @@ public class FoodMenu extends javax.swing.JFrame {
     private javax.swing.JLabel Burger;
     private javax.swing.JLabel Burgersteak;
     private javax.swing.JLabel Chicken;
+    private javax.swing.JLabel Date1;
     private javax.swing.JLabel Fries;
     private javax.swing.JLabel Hotdog;
     private javax.swing.JLabel Icecream;
-    private javax.swing.JButton Pay;
-    private javax.swing.JButton Pay1;
     private javax.swing.JLabel Pizza;
+    private javax.swing.JButton Receipt;
+    private javax.swing.JButton Reset;
     private javax.swing.JLabel Taco;
+    private javax.swing.JLabel Time;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
@@ -519,6 +951,7 @@ public class FoodMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -527,6 +960,7 @@ public class FoodMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JSpinner jSpinner3;
@@ -535,5 +969,7 @@ public class FoodMenu extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinner6;
     private javax.swing.JSpinner jSpinner7;
     private javax.swing.JSpinner jSpinner8;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton total1;
     // End of variables declaration//GEN-END:variables
 }
