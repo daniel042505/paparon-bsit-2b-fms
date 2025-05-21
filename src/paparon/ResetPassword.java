@@ -32,13 +32,15 @@ public class ResetPassword extends javax.swing.JFrame {
            
            public ResetPassword() { 
            initComponents();
-           this.setLocationRelativeTo(null); 
-           this.setResizable(false);
+         
+       
            
     }
     public ResetPassword(String userEmail) {
         initComponents();
         this.userEmail = userEmail;
+          this.setResizable(false);
+           this.setLocationRelativeTo(null); 
     }
 
     
@@ -61,7 +63,6 @@ public class ResetPassword extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

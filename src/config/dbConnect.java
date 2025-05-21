@@ -17,7 +17,7 @@ public class dbConnect {
        // constructor to connect to our database
         public dbConnect (){
             try{
-                connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/foodms", "root", "");
+                connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/fms", "root", "");
             }catch(SQLException ex){
                     System.out.println("Can't connect to database: "+ex.getMessage());
             }

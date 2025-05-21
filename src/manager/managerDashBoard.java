@@ -8,12 +8,15 @@ package manager;
 import config.Session;
 import javax.swing.JOptionPane;
 import paparon.LoginPage;
+import manager.UserActivityLogger;
+import config.dbConnect;
 
 /**
  *
  * @author User
  */
 public class managerDashBoard extends javax.swing.JFrame {
+      private UserActivityLogger activityLogger = new UserActivityLogger();
 
     /**
      * Creates new form managerDashBoard
@@ -43,6 +46,8 @@ public class managerDashBoard extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         user = new javax.swing.JLabel();
         acc_name = new javax.swing.JLabel();
         logout = new javax.swing.JLabel();
@@ -71,18 +76,24 @@ public class managerDashBoard extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 610, -1));
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 470, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 370, Short.MAX_VALUE)
-        );
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 470, 370));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1, 470, 360));
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 470, 360));
 
         user.setBackground(new java.awt.Color(102, 0, 102));
         user.setDisplayedMnemonic('U');
@@ -167,6 +178,14 @@ public class managerDashBoard extends javax.swing.JFrame {
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         // TODO add your handling code here:
+          Session sess = Session.getInstance(); // Get current session to retrieve user ID before logging out
+        int user_id = sess.getUid();
+
+        // Log user logout here
+        if (user_id != 0) { // Only log out if a valid user was logged in
+            activityLogger.logLogout(user_id);
+        }
+
         new LoginPage().setVisible(true);
         this.setVisible(false);
         this.dispose();
@@ -214,6 +233,8 @@ public class managerDashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel logout;
     private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables

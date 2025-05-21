@@ -66,11 +66,11 @@ public class ManageUsers extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        fname = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         m_table = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        fname = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         c_un1 = new javax.swing.JLabel();
         p_add = new javax.swing.JPanel();
@@ -97,6 +97,10 @@ public class ManageUsers extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+
+        fname.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        fname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        fname.setText("0");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -126,12 +130,6 @@ public class ManageUsers extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
         jPanel2.setLayout(null);
-
-        fname.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        fname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        fname.setText("0");
-        jPanel2.add(fname);
-        fname.setBounds(0, 400, 260, 50);
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

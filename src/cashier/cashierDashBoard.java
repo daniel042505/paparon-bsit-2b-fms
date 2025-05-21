@@ -121,6 +121,9 @@ public class cashierDashBoard extends javax.swing.JFrame {
     private void userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMouseClicked
         // TODO add your handling code here:
         
+        new FoodMenu().setVisible(true);
+        this.setVisible(false);
+        
     }//GEN-LAST:event_userMouseClicked
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
