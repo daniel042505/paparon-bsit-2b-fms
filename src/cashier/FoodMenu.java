@@ -5,6 +5,7 @@
  */
 package cashier;
 
+import config.Session;
 import javax.swing.JOptionPane;
 import config.dbConnect;
 import java.awt.print.PrinterException;
@@ -1384,8 +1385,8 @@ PreparedStatement pstmtReceipt = null;
         String insertOrderQuery = "INSERT INTO tbl_orders(burger_qty, fries_qty, burgersteak_qty, chicken_qty, hotdog_qty, taco_qty, pizza_qty, icecream_qty, coke_qty, sprite_qty, icedtea_qty, smoothie_qty, icedcoffee_qty, water_qty)"
                 + " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
-        String insertReceiptQuery = "INSERT INTO tbl_receipt( u_fid, total_amount)"
-                           + " VALUES(?, ?)"; 
+        String insertReceiptQuery = "INSERT INTO tbl_receipt( u_fid, u_id, total_amount)"
+                           + " VALUES(?, ?, ?)"; 
         
        
         try {
@@ -1409,18 +1410,31 @@ PreparedStatement pstmtReceipt = null;
             
 
            int rowsInsertedOrder = pstmtOrder.executeUpdate();
-    int u_fid = -1; // 
+    int u_fid = -1; //
 
     if (rowsInsertedOrder > 0) {
         ResultSet generatedKeys = pstmtOrder.getGeneratedKeys();
         if (generatedKeys.next()) {
             u_fid = generatedKeys.getInt(1); 
+          
         }
+        
+         Session currentSession = Session.getInstance();
 
+        
+        int currentUserId = currentSession.getUid();
+        if (currentUserId <= 0) { 
+            con.rollback(); 
+            JOptionPane.showMessageDialog(this, "Error: User not logged in. Please log in again.", "Session Error", JOptionPane.ERROR_MESSAGE);
+            return; 
+        }
         
         pstmtReceipt = con.prepareStatement(insertReceiptQuery);
         pstmtReceipt.setInt(1, u_fid);
-        pstmtReceipt.setDouble(2, total);
+       
+
+pstmtReceipt.setInt(2, currentUserId); 
+        pstmtReceipt.setDouble(3, total);
        
 
         int rowsInsertedReceipt = pstmtReceipt.executeUpdate();

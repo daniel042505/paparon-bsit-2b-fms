@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2025 at 07:49 PM
+-- Generation Time: May 22, 2025 at 10:35 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -33,6 +33,13 @@ CREATE TABLE `tbl_logs` (
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `u_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_logs`
+--
+
+INSERT INTO `tbl_logs` (`lid`, `action`, `date`, `u_id`) VALUES
+(1, 'User with ID 24 logged out', '2025-05-22 07:58:51', 24);
 
 -- --------------------------------------------------------
 
@@ -65,7 +72,11 @@ CREATE TABLE `tbl_orders` (
 INSERT INTO `tbl_orders` (`u_fid`, `burger_qty`, `fries_qty`, `burgersteak_qty`, `chicken_qty`, `hotdog_qty`, `taco_qty`, `pizza_qty`, `icecream_qty`, `coke_qty`, `sprite_qty`, `icedtea_qty`, `smoothie_qty`, `icedcoffee_qty`, `water_qty`) VALUES
 (1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (5, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0),
-(6, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0);
+(6, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0),
+(7, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0),
+(10, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0),
+(11, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0),
+(12, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -77,16 +88,21 @@ CREATE TABLE `tbl_receipt` (
   `order_id` int(11) NOT NULL,
   `total_amount` double NOT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `u_fid` int(11) NOT NULL
+  `u_fid` int(11) NOT NULL,
+  `u_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_receipt`
 --
 
-INSERT INTO `tbl_receipt` (`order_id`, `total_amount`, `date`, `u_fid`) VALUES
-(1, 5, '2025-05-21 16:25:53', 70),
-(2, 50, '2025-05-21 16:27:32', 6);
+INSERT INTO `tbl_receipt` (`order_id`, `total_amount`, `date`, `u_fid`, `u_id`) VALUES
+(1, 5, '2025-05-21 16:25:53', 70, 0),
+(2, 50, '2025-05-21 16:27:32', 6, 0),
+(3, 90, '2025-05-22 08:00:00', 7, 0),
+(4, 70, '2025-05-22 08:27:49', 10, -2),
+(5, 50, '2025-05-22 08:28:25', 11, -2),
+(6, 50, '2025-05-22 08:34:57', 12, 24);
 
 -- --------------------------------------------------------
 
@@ -114,7 +130,7 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`u_id`, `u_fname`, `u_lname`, `u_occ`, `u_cn`, `u_em`, `u_user`, `u_pass`, `u_status`, `u_image`, `security_question`, `security_answer`) VALUES
-(24, 'daniel', 'paparon', 'Manager', '01236987414', 'dandan@yahoo.com', 'dandan', 'OX90AzBCZMQiAImO6Gn8KrCbnlhMSdTzsDnvSmaSIco=', 'Active', 'Null', 'What\'s the name of your first pet?', 'brownie');
+(24, 'daniel', 'paparon', 'Cashier', '01236987414', 'dandan@yahoo.com', 'dandan', 'OX90AzBCZMQiAImO6Gn8KrCbnlhMSdTzsDnvSmaSIco=', 'Active', 'Null', 'What\'s the name of your first pet?', 'brownie');
 
 --
 -- Indexes for dumped tables
@@ -138,7 +154,8 @@ ALTER TABLE `tbl_orders`
 --
 ALTER TABLE `tbl_receipt`
   ADD PRIMARY KEY (`order_id`),
-  ADD KEY `u_fid` (`u_fid`);
+  ADD KEY `u_fid` (`u_fid`),
+  ADD KEY `u_id` (`u_id`);
 
 --
 -- Indexes for table `tbl_user`
@@ -154,25 +171,35 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_logs`
 --
 ALTER TABLE `tbl_logs`
-  MODIFY `lid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `lid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_orders`
 --
 ALTER TABLE `tbl_orders`
-  MODIFY `u_fid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `u_fid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tbl_receipt`
 --
 ALTER TABLE `tbl_receipt`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
   MODIFY `u_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `tbl_logs`
+--
+ALTER TABLE `tbl_logs`
+  ADD CONSTRAINT `tbl_logs_ibfk_1` FOREIGN KEY (`u_id`) REFERENCES `tbl_user` (`u_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
