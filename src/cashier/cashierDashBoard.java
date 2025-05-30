@@ -8,12 +8,14 @@ package cashier;
 import config.Session;
 import javax.swing.JOptionPane;
 import paparon.LoginPage;
+import manager.UserActivityLogger;
 
 /**
  *
  * @author User
  */
 public class cashierDashBoard extends javax.swing.JFrame {
+private UserActivityLogger activityLogger = new UserActivityLogger();
 
     /**
      * Creates new form cashierDashBoard
@@ -146,11 +148,21 @@ public class cashierDashBoard extends javax.swing.JFrame {
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         // TODO add your handling code here:
+        Session sess = Session.getInstance(); // Get current session to retrieve user ID before logging out
+        int user_id = sess.getUid();
+
+        // Log user logout here
+        if (user_id != 0) { // Only log out if a valid user was logged in
+            activityLogger.logLogout(user_id);
+        
+        
+        
+        
         new LoginPage().setVisible(true);
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_logoutMouseClicked
-
+    }
     /**
      * @param args the command line arguments
      */

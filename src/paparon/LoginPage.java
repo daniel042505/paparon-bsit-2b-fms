@@ -11,6 +11,7 @@ import config.dbConnect;
 import config.passwordHasher;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
+import manager.UserActivityLogger;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import manager.managerDashBoard;
@@ -23,6 +24,7 @@ import manager.managerDashBoard;
  * @author User
  */
 public class LoginPage extends javax.swing.JFrame {
+private UserActivityLogger activityLogger = new UserActivityLogger();
 
     /**
      * Creates new form LoginPage
@@ -30,6 +32,7 @@ public class LoginPage extends javax.swing.JFrame {
     public LoginPage() {
         initComponents();
         this.setResizable(false);
+       
         
     
     }
@@ -303,15 +306,29 @@ else if (pass.getPassword().length < 8) {
     new managerDashBoard().setVisible(true);
      this.setVisible(false);
      this.dispose();
+      Session sess = Session.getInstance(); // Get current session to retrieve user ID before logging out
+        int user_id = sess.getUid();
+
+        // Log user logout here
+        if (user_id != 0) { 
+            activityLogger.logLogin(user_id);
+        }
    }else if(occupation.equals("Cashier")){
     JOptionPane.showMessageDialog(null, "Login Successfully");
     new cashierDashBoard().setVisible(true);
      this.setVisible(false);
+     Session sess = Session.getInstance(); // Get current session to retrieve user ID before logging out
+        int user_id = sess.getUid();
+
+        // Log user logout here
+        if (user_id != 0) { 
+            activityLogger.logLogin(user_id);
      
    }else{
          JOptionPane.showMessageDialog(null, "No account type found, Contact the Manager");
        
        }
+  }
   }
     
   }else{

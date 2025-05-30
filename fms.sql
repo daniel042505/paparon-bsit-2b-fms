@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2025 at 10:35 AM
+-- Generation Time: May 30, 2025 at 02:45 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,7 +39,14 @@ CREATE TABLE `tbl_logs` (
 --
 
 INSERT INTO `tbl_logs` (`lid`, `action`, `date`, `u_id`) VALUES
-(1, 'User with ID 24 logged out', '2025-05-22 07:58:51', 24);
+(9, 'User with ID 24 logged in', '2025-05-30 11:42:31', 24),
+(10, 'User with ID 24 logged out', '2025-05-30 11:42:33', 24),
+(11, 'User with ID 24 logged in', '2025-05-30 11:42:54', 24),
+(12, 'User with ID 24 logged out', '2025-05-30 11:43:06', 24),
+(13, 'User with ID 24 logged in', '2025-05-30 11:50:32', 24),
+(14, 'User with ID 24 logged out', '2025-05-30 12:02:58', 24),
+(15, 'User with ID 24 logged in', '2025-05-30 12:03:23', 24),
+(16, 'User with ID 24 logged in', '2025-05-30 12:11:51', 24);
 
 -- --------------------------------------------------------
 
@@ -97,7 +104,6 @@ CREATE TABLE `tbl_receipt` (
 --
 
 INSERT INTO `tbl_receipt` (`order_id`, `total_amount`, `date`, `u_fid`, `u_id`) VALUES
-(1, 5, '2025-05-21 16:25:53', 70, 0),
 (2, 50, '2025-05-21 16:27:32', 6, 0),
 (3, 90, '2025-05-22 08:00:00', 7, 0),
 (4, 70, '2025-05-22 08:27:49', 10, -2),
@@ -171,7 +177,7 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_logs`
 --
 ALTER TABLE `tbl_logs`
-  MODIFY `lid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `lid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tbl_orders`

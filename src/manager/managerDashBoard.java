@@ -10,6 +10,9 @@ import javax.swing.JOptionPane;
 import paparon.LoginPage;
 import manager.UserActivityLogger;
 import config.dbConnect;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -24,12 +27,37 @@ public class managerDashBoard extends javax.swing.JFrame {
     public managerDashBoard() {
         initComponents();
         this.setResizable(false);
+          displayData();
+          displayData1();
         this.pack();
       this.setLocationRelativeTo(null);
       this.setVisible(true);
     }
-  
     
+     public void displayData(){
+        try{
+            dbConnect dbc = new dbConnect();
+            ResultSet rs = dbc.getData("SELECT order_id , total_amount, date, u_fid FROM tbl_receipt");
+            m_table.setModel(DbUtils.resultSetToTableModel(rs));
+             rs.close();
+        }catch(SQLException ex){
+            System.out.println("Errors: "+ex.getMessage());
+
+        }
+  
+     }
+     
+      public void displayData1(){
+        try{
+            dbConnect dbc = new dbConnect();
+            ResultSet rs = dbc.getData("SELECT lid , action, date, u_id FROM tbl_logs");
+            m_table1.setModel(DbUtils.resultSetToTableModel(rs));
+             rs.close();
+        }catch(SQLException ex){
+            System.out.println("Errors: "+ex.getMessage());
+
+        }
+      }
     
 
     /**
@@ -47,7 +75,9 @@ public class managerDashBoard extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        m_table = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        m_table1 = new javax.swing.JTable();
         user = new javax.swing.JLabel();
         acc_name = new javax.swing.JLabel();
         logout = new javax.swing.JLabel();
@@ -78,20 +108,29 @@ public class managerDashBoard extends javax.swing.JFrame {
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        m_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(m_table);
 
-        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1, 470, 360));
+        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 190));
+
+        m_table1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(m_table1);
+
+        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 470, 170));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 470, 360));
 
@@ -234,8 +273,10 @@ public class managerDashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel logout;
+    private javax.swing.JTable m_table;
+    private javax.swing.JTable m_table1;
     private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
 }
